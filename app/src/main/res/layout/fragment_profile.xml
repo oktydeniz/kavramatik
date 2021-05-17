@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_register_color"
+    android:orientation="vertical"
+    tools:context=".view.user.ProfileFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_margin_size"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_background_image"
+            android:layout_gravity="center"
+            android:src="@drawable/background_sm" />
+
+        <TextView
+            android:id="@+id/goToLoginFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/text_view_margin_top"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/sing_in"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/text_size_lm_" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/login_margin_top_size"
+            android:layout_marginTop="@dimen/login_margin_top_size"
+            android:layout_marginRight="@dimen/login_margin_top_size"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="@dimen/profile_weight_one"
+                android:text="@string/user_name"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/education_screen_text_size_sm" />
+
+            <TextView
+                android:id="@+id/profileUserName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="@dimen/profile_weight_two"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/education_screen_text_size_sm" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/login_margin_top_size"
+            android:layout_marginTop="@dimen/login_margin_top_size"
+            android:layout_marginRight="@dimen/login_margin_top_size"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="@dimen/profile_weight_one"
+                android:text="@string/user_e_mail"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/education_screen_text_size_sm" />
+
+            <TextView
+                android:id="@+id/profileUserEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="@dimen/profile_weight_two"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/education_screen_text_size_sm" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/login_margin_top_size"
+            android:layout_marginTop="@dimen/login_margin_top_size"
+            android:layout_marginRight="@dimen/login_margin_top_size"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="@dimen/profile_weight_one"
+                android:text="@string/user_score"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/education_screen_text_size_sm" />
+
+            <TextView
+                android:id="@+id/profileUserScore"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="@dimen/profile_weight_two"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/education_screen_text_size_sm" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/openGoogleTTSPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/login_margin_top_size"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/open_google_tts_on_play_store"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/education_screen_text_size_sm" />
+
+        <TextView
+            android:id="@+id/openForRateUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/login_margin_top_size"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/rate_us"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/education_screen_text_size_sm" />
+
+        <TextView
+            android:id="@+id/appVersionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/text_view_margin_top"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/education_screen_text_size_ex_sm" />
+    </LinearLayout>
+</ScrollView>
