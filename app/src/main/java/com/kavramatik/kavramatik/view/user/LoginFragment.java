@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,10 +28,8 @@ import retrofit2.Response;
 public class LoginFragment extends Fragment {
     private FragmentLoginBinding binding;
     private AppAlertDialogs appAlertDialogs;
-    private static final String TAG = "LoginFragment";
 
     public LoginFragment() {
-
     }
 
     @Override
@@ -85,7 +82,6 @@ public class LoginFragment extends Fragment {
                     if (response.body() != null) {
                         if (response.body().getResponse()) {
                             appAlertDialogs.dismissLoading();
-                            Log.d(TAG, "onResponse: " + response.body().getScore());
                             Toast.makeText(getContext(), getResources().getString(R.string.welcome_messages, response.body().getUserName()), Toast.LENGTH_LONG).show();
                             SharedPreferencesManager.setUserID(requireContext(), response.body().getUserId());
                             SharedPreferencesManager.setUserEmail(requireContext(), response.body().getUserEmail());

@@ -46,4 +46,7 @@
     <string name="verification_code">Verification Code</string>
     <string name="save">Save</string>
     <string name="enter_email_to_send">Just enter the email address you have uset to register with us and we will send you a reset link!</string>
+    <string name="sing_out">Sing Out</string>
+    <string name="first_sing_in">First Sing in</string>
+    <string name="update">Update</string>
 </resources>

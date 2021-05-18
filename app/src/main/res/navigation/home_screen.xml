@@ -59,6 +59,11 @@
         <action
             android:id="@+id/action_profileFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_choiceFragment"
+            app:destination="@id/choiceFragment"
+            app:popUpTo="@id/choiceFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -92,5 +97,11 @@
         android:id="@+id/sendMailFragment"
         android:name="com.kavramatik.kavramatik.view.user.SendMailFragment"
         android:label="fragment_send_mail"
-        tools:layout="@layout/fragment_send_mail" />
+        tools:layout="@layout/fragment_send_mail" >
+        <action
+            android:id="@+id/action_sendMailFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

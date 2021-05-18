@@ -16,7 +16,7 @@ public class ResponseModel {
     @SerializedName("id")
     private int userId;
 
-    @SerializedName("user_score")
+    @SerializedName("score")
     private int score;
 
     public Boolean getResponse() {
