@@ -39,5 +39,5 @@ public interface RestApi {
 
 
     @GET("showProfile")
-    Call<ResponseModel> showProfile(@Query("user_email") String userMail);
+    Call<ResponseModel> showProfile(@Field("user_email") String userMail);
 }

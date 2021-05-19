@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_educationCategories_to_shapeFragment"
             app:destination="@id/shapeFragment" />
+        <action
+            android:id="@+id/action_educationCategories_to_directionFragment"
+            app:destination="@id/directionFragment" />
     </fragment>
     <fragment
         android:id="@+id/dimensionFragment"
@@ -104,4 +107,9 @@
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/directionFragment"
+        android:name="com.kavramatik.kavramatik.view.education.DirectionFragment"
+        android:label="fragment_direction"
+        tools:layout="@layout/fragment_direction" />
 </navigation>

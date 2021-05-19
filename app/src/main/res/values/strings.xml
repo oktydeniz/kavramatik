@@ -49,4 +49,6 @@
     <string name="sing_out">Sing Out</string>
     <string name="first_sing_in">First Sing in</string>
     <string name="update">Update</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
 </resources>
