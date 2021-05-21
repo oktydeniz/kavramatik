@@ -34,6 +34,12 @@
         <action
             android:id="@+id/action_educationCategories_to_directionFragment"
             app:destination="@id/directionFragment" />
+        <action
+            android:id="@+id/action_educationCategories_to_numberFragment"
+            app:destination="@id/numberFragment" />
+        <action
+            android:id="@+id/action_educationCategories_to_emotionFragment"
+            app:destination="@id/emotionFragment" />
     </fragment>
     <fragment
         android:id="@+id/dimensionFragment"
@@ -112,4 +118,14 @@
         android:name="com.kavramatik.kavramatik.view.education.DirectionFragment"
         android:label="fragment_direction"
         tools:layout="@layout/fragment_direction" />
+    <fragment
+        android:id="@+id/numberFragment"
+        android:name="com.kavramatik.kavramatik.view.education.NumberFragment"
+        android:label="fragment_number"
+        tools:layout="@layout/fragment_number" />
+    <fragment
+        android:id="@+id/emotionFragment"
+        android:name="com.kavramatik.kavramatik.view.education.EmotionFragment"
+        android:label="fragment_emotion"
+        tools:layout="@layout/fragment_emotion" />
 </navigation>

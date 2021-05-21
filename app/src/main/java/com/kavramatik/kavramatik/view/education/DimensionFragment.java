@@ -5,15 +5,30 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kavramatik.kavramatik.adapter.DimensionRecyclerView;
 import com.kavramatik.kavramatik.databinding.FragmentDimensionBinding;
+import com.kavramatik.kavramatik.model.DimensionModel;
+import com.kavramatik.kavramatik.util.GoogleTTS;
+import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.viewModel.DimensionViewModel;
 
-public class DimensionFragment extends Fragment {
+import java.util.List;
+
+public class DimensionFragment extends Fragment implements ImageClickInterface {
     private FragmentDimensionBinding binding;
+    private TextToSpeech textToSpeech;
+    private int nextOne = 1;
+    private int previous;
+    private DimensionViewModel viewModel;
+    private List<DimensionModel> dimensionModelList;
+    private DimensionRecyclerView adapter;
 
     public DimensionFragment() {
 
@@ -34,12 +49,74 @@ public class DimensionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        viewModel = new ViewModelProvider(requireActivity()).get(DimensionViewModel.class);
+        adapter = new DimensionRecyclerView(this);
+        observeData();
     }
-    
+
+    private void observeData() {
+        viewModel.isLoading.observe(getViewLifecycleOwner(), i -> {
+            if (i) {
+                binding.dimensionProgress.setVisibility(View.VISIBLE);
+            } else {
+                binding.dimensionProgress.setVisibility(View.GONE);
+            }
+        });
+        viewModel.isError.observe(getViewLifecycleOwner(), i -> {
+            if (i) {
+                binding.dimensionErrorText.setVisibility(View.VISIBLE);
+            } else {
+                binding.dimensionErrorText.setVisibility(View.GONE);
+            }
+        });
+        viewModel.getDataAPI().observe(getViewLifecycleOwner(), model -> {
+            binding.dimensionNext.setVisibility(View.VISIBLE);
+            dimensionModelList = model;
+            show(dimensionModelList.get(0));
+        });
+        actions();
+    }
+
+    private void actions() {
+        binding.dimensionNext.setOnClickListener(v -> {
+            if (nextOne < dimensionModelList.size()) {
+                show(dimensionModelList.get(nextOne));
+                nextOne++;
+                binding.dimensionBack.setVisibility(View.VISIBLE);
+
+            } else {
+                show(dimensionModelList.get(0));
+                nextOne = 1;
+                binding.dimensionBack.setVisibility(View.GONE);
+            }
+        });
+        binding.dimensionBack.setOnClickListener(v -> {
+            previous = nextOne - 2;
+            if (previous >= 0) {
+                show(dimensionModelList.get(previous));
+                nextOne--;
+            } else {
+                binding.dimensionBack.setVisibility(View.GONE);
+            }
+        });
+    }
+
+
+    private void show(DimensionModel model) {
+        adapter.addNewDimension(model);
+        binding.dimensionRecyclerView.setAdapter(adapter);
+    }
+
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onItemClick(String text) {
+        textToSpeech = new TextToSpeech(getContext(), status -> GoogleTTS.getSpeech(text, getContext(), status, this.textToSpeech));
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
         binding = null;
+        viewModel.onDestroy();
+        GoogleTTS.shotDownTTS(this.textToSpeech);
     }
 }

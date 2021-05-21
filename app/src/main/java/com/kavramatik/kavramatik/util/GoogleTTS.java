@@ -25,4 +25,16 @@ public class GoogleTTS {
             e.printStackTrace();
         }
     }
+
+    public static void shotDownTTS(TextToSpeech textToSpeech) {
+        try {
+            if (textToSpeech != null) {
+                textToSpeech.shutdown();
+                textToSpeech.stop();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

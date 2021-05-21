@@ -69,9 +69,14 @@ public class ShapeFragment extends Fragment implements ImageClickInterface {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        binding = null;
-        shapeViewModel.destroy();
+
     }
 
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+        shapeViewModel.destroy();
+        GoogleTTS.shotDownTTS(this.textToSpeech);
+    }
 }
