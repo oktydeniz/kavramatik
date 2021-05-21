@@ -67,12 +67,10 @@ public class ColorFragment extends Fragment implements ImageClickInterface {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         colorViewModel.destroy();
         binding = null;
-        textToSpeech = null;
+        GoogleTTS.shotDownTTS(this.textToSpeech);
     }
-
-
 }

@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.kavramatik.kavramatik.model.ShapeModel;
+import com.kavramatik.kavramatik.model.DirectionModel;
 import com.kavramatik.kavramatik.service.EducationAPI;
 import com.kavramatik.kavramatik.service.EducationAPIService;
 
@@ -16,47 +16,48 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-public class ShapeViewModel extends ViewModel {
-    private final MutableLiveData<List<ShapeModel>> shapeModel;
+public class DirectionViewModel extends ViewModel {
+
+    private final MutableLiveData<List<DirectionModel>> directionModel;
     public final MutableLiveData<Boolean> loading;
     private final CompositeDisposable compositeDisposable;
-
-    private final Retrofit retrofit;
     EducationAPI api;
+    private final Retrofit retrofit;
+    public final MutableLiveData<Boolean> isFailed;
 
-    public ShapeViewModel() {
+    public DirectionViewModel() {
         compositeDisposable = new CompositeDisposable();
         loading = new MutableLiveData<>();
-        shapeModel = new MutableLiveData<>();
-
+        directionModel = new MutableLiveData<>();
+        isFailed = new MutableLiveData<>();
         retrofit = EducationAPIService.getInstance();
     }
 
-    public MutableLiveData<List<ShapeModel>> getDataAPI() {
+    public MutableLiveData<List<DirectionModel>> getDataAPI() {
         loading.setValue(true);
         api = retrofit.create(EducationAPI.class);
-        compositeDisposable.add(api.getShapes()
-                .subscribeOn(Schedulers.io())
+        compositeDisposable.add(api.getDirections().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<List<ShapeModel>>() {
+                .subscribeWith(new DisposableSingleObserver<List<DirectionModel>>() {
                     @Override
-                    public void onSuccess(@NonNull List<ShapeModel> shapeModels) {
+                    public void onSuccess(@NonNull List<DirectionModel> directionModels) {
                         loading.setValue(false);
-
-                        shapeModel.setValue(shapeModels);
+                        isFailed.setValue(false);
+                        directionModel.setValue(directionModels);
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
                         loading.setValue(false);
+                        isFailed.setValue(true);
 
                     }
-                })
-        );
-        return shapeModel;
+                }));
+        return directionModel;
     }
 
-    public void destroy() {
+    public void onDestroy() {
         compositeDisposable.clear();
+
     }
 }

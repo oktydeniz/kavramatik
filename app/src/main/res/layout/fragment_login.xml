@@ -70,6 +70,8 @@
             android:layout_marginBottom="@dimen/login_margin_top_size"
             android:clickable="true"
             android:focusable="true"
+            android:textSize="@dimen/education_screen_text_size_sm"
+            android:fontFamily="@font/roboto_bold"
             android:text="@string/forgot_password"
             android:textColor="@color/text_color" />
 

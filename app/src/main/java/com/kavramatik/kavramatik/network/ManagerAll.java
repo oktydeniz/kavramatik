@@ -27,4 +27,16 @@ public class ManagerAll extends BaseManager {
         return getRestApi().sendMail(email);
     }
 
+    public Call<ResponseModel> resetPassword(String email, String password, String verification) {
+        return getRestApi().resetPassword(email, password, verification);
+    }
+
+    public Call<ResponseModel> setNewScore(String email, int score) {
+        return getRestApi().setScoreRequest(email, score);
+    }
+
+    public Call<ResponseModel> showProfile(String email) {
+        return getRestApi().showProfile(email);
+    }
+
 }

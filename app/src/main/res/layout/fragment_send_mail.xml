@@ -58,7 +58,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/login_margin_size"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <EditText
             android:id="@+id/verificationCodeEditText"
@@ -71,7 +71,7 @@
             android:autofillHints="@string/app_name"
             android:backgroundTint="@color/text_color"
             android:hint="@string/verification_code"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:textColor="@color/text_color"
             android:textColorHint="@color/text_color" />
 

@@ -24,7 +24,7 @@
     <string name="okay">Tamam</string>
     <string name="cancel">İptal</string>
 
-    <string name="email">E-mail</string>
+    <string name="email">E-posta</string>
     <string name="password">Şifre</string>
     <string name="sing_up">Kayıt Ol</string>
     <string name="sing_in">Giriş Yap</string>
@@ -33,7 +33,7 @@
     <string name="check_again">Bu Alanı Kontrol Edin</string>
     <string name="user_name">Kullanıcı Adı : </string>
     <string name="user_name_register">Kullanıcı Adı </string>
-    <string name="user_e_mail">Kullanıcı E-mail: </string>
+    <string name="user_e_mail">Kullanıcı E-posta: </string>
     <string name="user_score">Kullanıcı Skor : </string>
     <string name="something_went_wrong">Bir Şeyler Ters Gitti</string>
     <string name="open_google_tts_on_play_store">Google TTS\'i Play Store\'da aç</string>
@@ -42,11 +42,16 @@
     <string name="app_version">Versiyon : </string>
     <string name="privacy_policy">Bir hesap oluşturarak, <u>Kullanım Koşulları</u> ve <u>Gizlilik Politikasını</u> kabul etmiş olursunuz.</string>
     <string name="password_not_match">Şifreler Eşleşmiyor </string>
-    <string name="welcome_messages">Hoşgeldiniz %1$s !</string>
+    <string name="welcome_messages">Hoş Geldiniz %1$s !</string>
     <string name="loading">Yükleniyor…</string>
     <string name="send">Gönder</string>
     <string name="save">Kaydet</string>
     <string name="verification_code">Doğrulama Kodu</string>
     <string name="enter_email_to_send">Bize kayıt olmak için kullandığınız e-posta adresini girmeniz yeterlidir, size bir sıfırlama bağlantısı göndereceğiz!</string>
+    <string name="sing_out">Çıkış Yap</string>
+    <string name="first_sing_in">Önce Giriş Yapınız</string>
+    <string name="update">Yenile</string>
+    <string name="next">İleri</string>
+    <string name="back">Geri</string>
 
 </resources>
