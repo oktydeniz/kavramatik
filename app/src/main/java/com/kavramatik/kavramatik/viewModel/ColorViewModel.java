@@ -19,6 +19,7 @@ import retrofit2.Retrofit;
 public class ColorViewModel extends ViewModel {
     private final MutableLiveData<List<ColorModel>> colorModel;
     public MutableLiveData<Boolean> loading;
+    public MutableLiveData<Boolean> error;
     private final CompositeDisposable compositeDisposable;
     private final Retrofit retrofit;
     EducationAPI api;
@@ -28,6 +29,7 @@ public class ColorViewModel extends ViewModel {
         this.loading = new MutableLiveData<>();
         compositeDisposable = new CompositeDisposable();
         retrofit = EducationAPIService.getInstance();
+        error = new MutableLiveData<>();
 
     }
 
@@ -42,18 +44,22 @@ public class ColorViewModel extends ViewModel {
                     public void onSuccess(@NonNull List<ColorModel> colorModels) {
                         colorModel.setValue(colorModels);
                         loading.setValue(false);
+                        error.setValue(false);
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-
+                        loading.setValue(false);
+                        error.setValue(true);
                     }
                 })
         );
         return colorModel;
     }
 
-    public void destroy() {
+    @Override
+    protected void onCleared() {
+        super.onCleared();
         compositeDisposable.clear();
     }
 }

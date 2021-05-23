@@ -56,7 +56,9 @@ public class NumberViewModel extends ViewModel {
         return numberModel;
     }
 
-    public void onDestroy() {
+    @Override
+    protected void onCleared() {
+        super.onCleared();
         compositeDisposable.clear();
     }
 }

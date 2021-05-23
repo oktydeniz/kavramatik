@@ -116,7 +116,6 @@ public class EmotionFragment extends Fragment implements ImageClickInterface {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        emotionViewModel.onDestroy();
         GoogleTTS.shotDownTTS(this.textToSpeech);
     }
 

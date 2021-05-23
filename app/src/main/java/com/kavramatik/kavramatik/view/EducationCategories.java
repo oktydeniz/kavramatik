@@ -64,6 +64,18 @@ public class EducationCategories extends Fragment {
             NavDirections directions = EducationCategoriesDirections.actionEducationCategoriesToEmotionFragment();
             Navigation.findNavController(v).navigate(directions);
         });
+        binding.quantities.setOnClickListener(v -> {
+            NavDirections directions = EducationCategoriesDirections.actionEducationCategoriesToQuantityFragment();
+            Navigation.findNavController(v).navigate(directions);
+        });
+        binding.senses.setOnClickListener(v -> {
+            NavDirections directions = EducationCategoriesDirections.actionEducationCategoriesToSenseFragment();
+            Navigation.findNavController(v).navigate(directions);
+        });
+        binding.opposites.setOnClickListener(v -> {
+            NavDirections directions = EducationCategoriesDirections.actionEducationCategoriesToOppositesFragment();
+            Navigation.findNavController(v).navigate(directions);
+        });
     }
 
     @Override

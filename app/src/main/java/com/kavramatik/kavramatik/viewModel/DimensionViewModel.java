@@ -54,7 +54,9 @@ public class DimensionViewModel extends ViewModel {
         return listMutableLiveData;
     }
 
-    public void onDestroy() {
+    @Override
+    protected void onCleared() {
+        super.onCleared();
         disposable.clear();
     }
 }

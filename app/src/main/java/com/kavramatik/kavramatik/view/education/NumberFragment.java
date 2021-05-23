@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ import com.kavramatik.kavramatik.viewModel.NumberViewModel;
 import java.util.List;
 
 public class NumberFragment extends Fragment implements ImageClickInterface {
-    private static final String TAG = "NumberFragment";
     private FragmentNumberBinding binding;
     private NumberViewModel viewModel;
     private TextToSpeech textToSpeech;
@@ -72,7 +70,6 @@ public class NumberFragment extends Fragment implements ImageClickInterface {
         });
         viewModel.getDataAPI().observe(getViewLifecycleOwner(), model -> {
             binding.numberNext.setVisibility(View.VISIBLE);
-            Log.i(TAG, "observeData: " + model.size());
             numberModels = model;
             show(numberModels.get(0));
         });
@@ -116,7 +113,6 @@ public class NumberFragment extends Fragment implements ImageClickInterface {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        viewModel.onDestroy();
         GoogleTTS.shotDownTTS(this.textToSpeech);
     }
 }

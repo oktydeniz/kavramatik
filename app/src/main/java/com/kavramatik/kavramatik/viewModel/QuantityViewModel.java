@@ -3,7 +3,7 @@ package com.kavramatik.kavramatik.viewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.kavramatik.kavramatik.model.EmotionModel;
+import com.kavramatik.kavramatik.model.QuantityModel;
 import com.kavramatik.kavramatik.service.EducationAPI;
 import com.kavramatik.kavramatik.service.EducationAPIService;
 
@@ -17,42 +17,42 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-public class EmotionViewModel extends ViewModel {
+public class QuantityViewModel extends ViewModel {
 
-    private final MutableLiveData<List<EmotionModel>> mutableLiveData;
+    public final MutableLiveData<List<QuantityModel>> listMutableLiveData;
     public MutableLiveData<Boolean> isError;
     public MutableLiveData<Boolean> isLoading;
     EducationAPI api;
-    private final Retrofit retrofit;
     private final CompositeDisposable compositeDisposable;
+    private final Retrofit retrofit;
 
-    public EmotionViewModel() {
+    public QuantityViewModel() {
         isLoading = new MutableLiveData<>();
         isError = new MutableLiveData<>();
-        mutableLiveData = new MutableLiveData<>();
+        listMutableLiveData = new MutableLiveData<>();
         compositeDisposable = new CompositeDisposable();
         retrofit = EducationAPIService.getInstance();
     }
 
-    public MutableLiveData<List<EmotionModel>> getDataAPI() {
+    public MutableLiveData<List<QuantityModel>> getDataAPI() {
         isLoading.setValue(true);
         api = retrofit.create(EducationAPI.class);
-        compositeDisposable.add(api.getEmotions().subscribeOn(Schedulers.io()).
-                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<EmotionModel>>() {
+        compositeDisposable.add(api.getQuantities().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<QuantityModel>>() {
+
             @Override
-            public void onSuccess(@NotNull List<EmotionModel> emotionModels) {
-                isLoading.setValue(false);
+            public void onSuccess(@NotNull List<QuantityModel> quantityModels) {
                 isError.setValue(false);
-                mutableLiveData.setValue(emotionModels);
+                isLoading.setValue(false);
+                listMutableLiveData.setValue(quantityModels);
             }
 
             @Override
             public void onError(@NotNull Throwable e) {
-                isLoading.setValue(false);
                 isError.setValue(true);
+                isLoading.setValue(false);
             }
         }));
-        return mutableLiveData;
+        return listMutableLiveData;
     }
 
     @Override

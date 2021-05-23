@@ -12,26 +12,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.kavramatik.kavramatik.adapter.DimensionRecyclerView;
-import com.kavramatik.kavramatik.databinding.FragmentDimensionBinding;
-import com.kavramatik.kavramatik.model.DimensionModel;
+import com.kavramatik.kavramatik.adapter.SenseRecyclerView;
+import com.kavramatik.kavramatik.databinding.FragmentSenseBinding;
+import com.kavramatik.kavramatik.model.SenseModel;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
-import com.kavramatik.kavramatik.viewModel.DimensionViewModel;
+import com.kavramatik.kavramatik.viewModel.SenseViewModel;
 
 import java.util.List;
 
-public class DimensionFragment extends Fragment implements ImageClickInterface {
-    private FragmentDimensionBinding binding;
+public class SenseFragment extends Fragment implements ImageClickInterface {
+    private FragmentSenseBinding binding;
     private TextToSpeech textToSpeech;
+    private SenseRecyclerView adapter;
     private int nextOne = 1;
+    private List<SenseModel> senseModels;
     private int previous;
-    private DimensionViewModel viewModel;
-    private List<DimensionModel> dimensionModelList;
-    private DimensionRecyclerView adapter;
+    private SenseViewModel viewModel;
 
-    public DimensionFragment() {
-
+    public SenseFragment() {
     }
 
     @Override
@@ -42,69 +41,69 @@ public class DimensionFragment extends Fragment implements ImageClickInterface {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentDimensionBinding.inflate(inflater, container, false);
+        binding = FragmentSenseBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewModel = new ViewModelProvider(requireActivity()).get(DimensionViewModel.class);
-        adapter = new DimensionRecyclerView(this);
+        viewModel = new ViewModelProvider(requireActivity()).get(SenseViewModel.class);
+        adapter = new SenseRecyclerView(this);
+        viewModel.getDataAPI();
         observeData();
     }
 
     private void observeData() {
         viewModel.isLoading.observe(getViewLifecycleOwner(), i -> {
             if (i) {
-                binding.dimensionProgress.setVisibility(View.VISIBLE);
+                binding.senseProgress.setVisibility(View.VISIBLE);
             } else {
-                binding.dimensionProgress.setVisibility(View.GONE);
+                binding.senseProgress.setVisibility(View.GONE);
             }
         });
         viewModel.isError.observe(getViewLifecycleOwner(), i -> {
             if (i) {
-                binding.dimensionErrorText.setVisibility(View.VISIBLE);
+                binding.senseErrorText.setVisibility(View.VISIBLE);
             } else {
-                binding.dimensionErrorText.setVisibility(View.GONE);
+                binding.senseErrorText.setVisibility(View.GONE);
             }
         });
-        viewModel.getDataAPI().observe(getViewLifecycleOwner(), model -> {
-            binding.dimensionNext.setVisibility(View.VISIBLE);
-            dimensionModelList = model;
-            show(dimensionModelList.get(0));
+        viewModel.listMutableLiveData.observe(getViewLifecycleOwner(), model -> {
+            binding.senseNext.setVisibility(View.VISIBLE);
+            senseModels = model;
+            show(senseModels.get(0));
+
         });
         actions();
     }
 
     private void actions() {
-        binding.dimensionNext.setOnClickListener(v -> {
-            if (nextOne < dimensionModelList.size()) {
-                show(dimensionModelList.get(nextOne));
+        binding.senseNext.setOnClickListener(v -> {
+            if (nextOne < senseModels.size()) {
+                show(senseModels.get(nextOne));
                 nextOne++;
-                binding.dimensionBack.setVisibility(View.VISIBLE);
-
+                binding.senseBack.setVisibility(View.VISIBLE);
             } else {
-                show(dimensionModelList.get(0));
+                adapter.showNew(senseModels.get(0));
                 nextOne = 1;
-                binding.dimensionBack.setVisibility(View.GONE);
+                binding.senseBack.setVisibility(View.GONE);
             }
         });
-        binding.dimensionBack.setOnClickListener(v -> {
+        binding.senseBack.setOnClickListener(v -> {
             previous = nextOne - 2;
             if (previous >= 0) {
-                show(dimensionModelList.get(previous));
+                show(senseModels.get(previous));
                 nextOne--;
             } else {
-                binding.dimensionBack.setVisibility(View.GONE);
+                binding.senseBack.setVisibility(View.GONE);
             }
         });
     }
 
-
-    private void show(DimensionModel model) {
-        adapter.addNewDimension(model);
-        binding.dimensionRecyclerView.setAdapter(adapter);
+    private void show(SenseModel model) {
+        adapter.showNew(model);
+        binding.senseRecyclerView.setAdapter(adapter);
     }
 
     @Override

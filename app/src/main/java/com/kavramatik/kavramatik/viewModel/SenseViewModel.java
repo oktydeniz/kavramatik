@@ -2,57 +2,53 @@ package com.kavramatik.kavramatik.viewModel;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.kavramatik.kavramatik.model.EmotionModel;
+import com.kavramatik.kavramatik.model.SenseModel;
 import com.kavramatik.kavramatik.service.EducationAPI;
 import com.kavramatik.kavramatik.service.EducationAPIService;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-public class EmotionViewModel extends ViewModel {
+public class SenseViewModel extends ViewModel {
 
-    private final MutableLiveData<List<EmotionModel>> mutableLiveData;
-    public MutableLiveData<Boolean> isError;
+    public MutableLiveData<List<SenseModel>> listMutableLiveData;
     public MutableLiveData<Boolean> isLoading;
+    public MutableLiveData<Boolean> isError;
     EducationAPI api;
-    private final Retrofit retrofit;
     private final CompositeDisposable compositeDisposable;
+    private final Retrofit retrofit;
 
-    public EmotionViewModel() {
-        isLoading = new MutableLiveData<>();
+    public SenseViewModel() {
+        listMutableLiveData = new MutableLiveData<>();
         isError = new MutableLiveData<>();
-        mutableLiveData = new MutableLiveData<>();
-        compositeDisposable = new CompositeDisposable();
+        isLoading = new MutableLiveData<>();
         retrofit = EducationAPIService.getInstance();
+        compositeDisposable = new CompositeDisposable();
     }
 
-    public MutableLiveData<List<EmotionModel>> getDataAPI() {
-        isLoading.setValue(true);
+    public MutableLiveData<List<SenseModel>> getDataAPI() {
         api = retrofit.create(EducationAPI.class);
-        compositeDisposable.add(api.getEmotions().subscribeOn(Schedulers.io()).
-                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<EmotionModel>>() {
+        isLoading.setValue(true);
+        compositeDisposable.add(api.getSenses().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<SenseModel>>() {
+
             @Override
-            public void onSuccess(@NotNull List<EmotionModel> emotionModels) {
-                isLoading.setValue(false);
+            public void onSuccess(@NotNull List<SenseModel> senseModels) {
                 isError.setValue(false);
-                mutableLiveData.setValue(emotionModels);
+                isLoading.setValue(false);
+                listMutableLiveData.setValue(senseModels);
             }
 
             @Override
             public void onError(@NotNull Throwable e) {
-                isLoading.setValue(false);
                 isError.setValue(true);
+                isLoading.setValue(false);
             }
         }));
-        return mutableLiveData;
+        return listMutableLiveData;
     }
 
     @Override
