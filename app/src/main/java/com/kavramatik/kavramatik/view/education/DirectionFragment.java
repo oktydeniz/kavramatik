@@ -113,16 +113,9 @@ public class DirectionFragment extends Fragment implements ImageClickInterface {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        viewModel.onDestroy();
         GoogleTTS.shotDownTTS(this.textToSpeech);
     }
 }

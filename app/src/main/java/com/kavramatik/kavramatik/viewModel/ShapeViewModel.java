@@ -18,8 +18,9 @@ import retrofit2.Retrofit;
 
 public class ShapeViewModel extends ViewModel {
     private final MutableLiveData<List<ShapeModel>> shapeModel;
-    public final MutableLiveData<Boolean> loading;
+    public MutableLiveData<Boolean> loading;
     private final CompositeDisposable compositeDisposable;
+    public MutableLiveData<Boolean> error;
 
     private final Retrofit retrofit;
     EducationAPI api;
@@ -27,8 +28,8 @@ public class ShapeViewModel extends ViewModel {
     public ShapeViewModel() {
         compositeDisposable = new CompositeDisposable();
         loading = new MutableLiveData<>();
+        error = new MutableLiveData<>();
         shapeModel = new MutableLiveData<>();
-
         retrofit = EducationAPIService.getInstance();
     }
 
@@ -42,13 +43,14 @@ public class ShapeViewModel extends ViewModel {
                     @Override
                     public void onSuccess(@NonNull List<ShapeModel> shapeModels) {
                         loading.setValue(false);
-
+                        error.setValue(false);
                         shapeModel.setValue(shapeModels);
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
                         loading.setValue(false);
+                        error.setValue(true);
 
                     }
                 })
@@ -56,7 +58,9 @@ public class ShapeViewModel extends ViewModel {
         return shapeModel;
     }
 
-    public void destroy() {
+    @Override
+    protected void onCleared() {
+        super.onCleared();
         compositeDisposable.clear();
     }
 }

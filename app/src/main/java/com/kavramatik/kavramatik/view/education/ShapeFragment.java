@@ -55,6 +55,13 @@ public class ShapeFragment extends Fragment implements ImageClickInterface {
                 binding.progressBarShape.setVisibility(View.GONE);
             }
         });
+        shapeViewModel.error.observe(getViewLifecycleOwner(), i -> {
+            if (i) {
+                binding.shapeErrorText.setVisibility(View.VISIBLE);
+            } else {
+                binding.shapeErrorText.setVisibility(View.GONE);
+            }
+        });
         shapeViewModel.getDataAPI().observe(getViewLifecycleOwner(), model -> {
             adapter = new ShapeRecyclerView(model, this);
             binding.shapeRecyclerView.setAdapter(adapter);
@@ -76,7 +83,6 @@ public class ShapeFragment extends Fragment implements ImageClickInterface {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        shapeViewModel.destroy();
         GoogleTTS.shotDownTTS(this.textToSpeech);
     }
 }

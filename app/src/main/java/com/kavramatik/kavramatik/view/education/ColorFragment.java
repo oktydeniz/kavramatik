@@ -55,6 +55,13 @@ public class ColorFragment extends Fragment implements ImageClickInterface {
                 binding.progressBar.setVisibility(View.GONE);
             }
         });
+        colorViewModel.error.observe(getViewLifecycleOwner(), i -> {
+            if (i) {
+                binding.colorErrorText.setVisibility(View.VISIBLE);
+            } else {
+                binding.colorErrorText.setVisibility(View.GONE);
+            }
+        });
         colorViewModel.getDataAPI().observe(getViewLifecycleOwner(), model -> {
             adapterColor = new ColorRecyclerView(model, this);
             binding.colorRecyclerView.setAdapter(adapterColor);
@@ -69,7 +76,6 @@ public class ColorFragment extends Fragment implements ImageClickInterface {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        colorViewModel.destroy();
         binding = null;
         GoogleTTS.shotDownTTS(this.textToSpeech);
     }

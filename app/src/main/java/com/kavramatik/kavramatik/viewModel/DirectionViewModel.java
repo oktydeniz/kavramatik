@@ -56,8 +56,9 @@ public class DirectionViewModel extends ViewModel {
         return directionModel;
     }
 
-    public void onDestroy() {
+    @Override
+    protected void onCleared() {
+        super.onCleared();
         compositeDisposable.clear();
-
     }
 }

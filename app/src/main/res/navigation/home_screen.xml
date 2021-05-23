@@ -40,6 +40,15 @@
         <action
             android:id="@+id/action_educationCategories_to_emotionFragment"
             app:destination="@id/emotionFragment" />
+        <action
+            android:id="@+id/action_educationCategories_to_quantityFragment"
+            app:destination="@id/quantityFragment" />
+        <action
+            android:id="@+id/action_educationCategories_to_senseFragment"
+            app:destination="@id/senseFragment" />
+        <action
+            android:id="@+id/action_educationCategories_to_oppositesFragment"
+            app:destination="@id/oppositesFragment" />
     </fragment>
     <fragment
         android:id="@+id/dimensionFragment"
@@ -128,4 +137,19 @@
         android:name="com.kavramatik.kavramatik.view.education.EmotionFragment"
         android:label="fragment_emotion"
         tools:layout="@layout/fragment_emotion" />
+    <fragment
+        android:id="@+id/quantityFragment"
+        android:name="com.kavramatik.kavramatik.view.education.QuantityFragment"
+        android:label="fragment_quantity"
+        tools:layout="@layout/fragment_quantity" />
+    <fragment
+        android:id="@+id/senseFragment"
+        android:name="com.kavramatik.kavramatik.view.education.SenseFragment"
+        android:label="fragment_sense"
+        tools:layout="@layout/fragment_sense" />
+    <fragment
+        android:id="@+id/oppositesFragment"
+        android:name="com.kavramatik.kavramatik.view.education.OppositesFragment"
+        android:label="fragment_opposites"
+        tools:layout="@layout/fragment_opposites" />
 </navigation>
