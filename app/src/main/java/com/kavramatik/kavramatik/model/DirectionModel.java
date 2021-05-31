@@ -1,18 +1,27 @@
 package com.kavramatik.kavramatik.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
-public class DirectionModel {
+@Entity
+public class DirectionModel implements BaseModel {
 
+    @PrimaryKey
     @SerializedName("id")
     private int id;
 
+    @ColumnInfo
     @SerializedName("direction_name")
     private String directionName;
 
+    @ColumnInfo
     @SerializedName("direction_text")
     private String directionText;
 
+    @ColumnInfo
     @SerializedName("direction_image")
     private String directionImage;
 

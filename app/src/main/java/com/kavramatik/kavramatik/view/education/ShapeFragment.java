@@ -44,6 +44,7 @@ public class ShapeFragment extends Fragment implements ImageClickInterface {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         shapeViewModel = new ViewModelProvider(requireActivity()).get(ShapeViewModel.class);
+        shapeViewModel.getData();
         observeData();
     }
 
@@ -62,9 +63,11 @@ public class ShapeFragment extends Fragment implements ImageClickInterface {
                 binding.shapeErrorText.setVisibility(View.GONE);
             }
         });
-        shapeViewModel.getDataAPI().observe(getViewLifecycleOwner(), model -> {
-            adapter = new ShapeRecyclerView(model, this);
-            binding.shapeRecyclerView.setAdapter(adapter);
+        shapeViewModel.shapeModel.observe(getViewLifecycleOwner(), model -> {
+            if (model.size() >= 1) {
+                adapter = new ShapeRecyclerView(model, this);
+                binding.shapeRecyclerView.setAdapter(adapter);
+            }
         });
     }
 

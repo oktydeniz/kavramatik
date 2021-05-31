@@ -52,6 +52,7 @@ public class DirectionFragment extends Fragment implements ImageClickInterface {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(DirectionViewModel.class);
         adapter = new DirectionRecyclerView(this);
+        viewModel.getData();
         observeData();
 
     }
@@ -71,10 +72,12 @@ public class DirectionFragment extends Fragment implements ImageClickInterface {
                 binding.directionErrorText.setVisibility(View.GONE);
             }
         });
-        viewModel.getDataAPI().observe(getViewLifecycleOwner(), model -> {
-            binding.directionNext.setVisibility(View.VISIBLE);
-            models = model;
-            show(models.get(0));
+        viewModel.directionModel.observe(getViewLifecycleOwner(), model -> {
+            if (model.size() >= 1) {
+                binding.directionNext.setVisibility(View.VISIBLE);
+                models = model;
+                show(models.get(0));
+            }
         });
         actions();
     }

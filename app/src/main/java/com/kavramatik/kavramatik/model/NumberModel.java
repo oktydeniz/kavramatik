@@ -1,24 +1,35 @@
 package com.kavramatik.kavramatik.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
-public class NumberModel {
+@Entity
+public class NumberModel implements BaseModel {
 
+    @PrimaryKey
     @SerializedName("id")
     private int id;
 
+    @ColumnInfo
     @SerializedName("number_name")
     private String numberName;
 
+    @ColumnInfo
     @SerializedName("number_one_text")
     private String numberText;
 
+    @ColumnInfo
     @SerializedName("number_quantity_text")
     private String numberImageText;
 
+    @ColumnInfo
     @SerializedName("number_one_image")
     private String numberImage;
 
+    @ColumnInfo
     @SerializedName("number_quantity_image")
     private String numberQuantityImage;
 

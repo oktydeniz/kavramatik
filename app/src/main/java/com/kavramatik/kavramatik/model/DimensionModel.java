@@ -1,26 +1,38 @@
 package com.kavramatik.kavramatik.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
-public class DimensionModel {
+@Entity
+public class DimensionModel  implements BaseModel{
+    @PrimaryKey
     @SerializedName("id")
     private int id;
 
+    @ColumnInfo
     @SerializedName("dimension_name")
     private String dimensionName;
 
+    @ColumnInfo
     @SerializedName("dimension_text")
     private String dimensionText;
 
+    @ColumnInfo
     @SerializedName("dimension_one_text")
     private String dimensionImageTextOne;
 
+    @ColumnInfo
     @SerializedName("dimension_two_text")
     private String dimensionImageTextTwo;
 
+    @ColumnInfo
     @SerializedName("dimension_one_image")
     private String imageOne;
 
+    @ColumnInfo
     @SerializedName("dimension_two_image")
     private String imageTwo;
 

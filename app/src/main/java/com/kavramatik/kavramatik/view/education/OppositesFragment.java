@@ -51,7 +51,7 @@ public class OppositesFragment extends Fragment implements ImageClickInterface {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(OppositesViewModel.class);
         adapter = new OppositeRecyclerView(this);
-        viewModel.getDataAPI();
+        viewModel.getData();
         observeData();
     }
 
@@ -71,9 +71,11 @@ public class OppositesFragment extends Fragment implements ImageClickInterface {
             }
         });
         viewModel.oppositeLiveData.observe(getViewLifecycleOwner(), model -> {
-            binding.oppositesNext.setVisibility(View.VISIBLE);
-            oppositesModelList = model;
-            show(oppositesModelList.get(0));
+            if (model.size() >= 1) {
+                binding.oppositesNext.setVisibility(View.VISIBLE);
+                oppositesModelList = model;
+                show(oppositesModelList.get(0));
+            }
         });
         actions();
     }

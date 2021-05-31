@@ -3,7 +3,6 @@ package com.kavramatik.kavramatik.model;
 import com.google.gson.annotations.SerializedName;
 
 public class ResponseModel {
-
     @SerializedName("response")
     private Boolean response;
 

@@ -52,7 +52,7 @@ public class QuantityFragment extends Fragment implements ImageClickInterface {
         super.onViewCreated(view, savedInstanceState);
         quantityViewModel = new ViewModelProvider(requireActivity()).get(QuantityViewModel.class);
         adapter = new QuantityRecyclerView(this);
-        quantityViewModel.getDataAPI();
+        quantityViewModel.getData();
         observeData();
     }
 
@@ -72,9 +72,11 @@ public class QuantityFragment extends Fragment implements ImageClickInterface {
             }
         });
         quantityViewModel.listMutableLiveData.observe(getViewLifecycleOwner(), model -> {
-            binding.quantityNext.setVisibility(View.VISIBLE);
-            models = model;
-            show(models.get(0));
+            if (model.size() >= 1) {
+                binding.quantityNext.setVisibility(View.VISIBLE);
+                models = model;
+                show(models.get(0));
+            }
         });
         actions();
     }
