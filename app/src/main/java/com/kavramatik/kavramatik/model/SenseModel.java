@@ -1,24 +1,34 @@
 package com.kavramatik.kavramatik.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
+@Entity
+public class SenseModel implements BaseModel {
 
-public class SenseModel {
-
+    @PrimaryKey
     @SerializedName("id")
     private int id;
 
+    @ColumnInfo
     @SerializedName("sense_name")
     private String senseName;
 
+    @ColumnInfo
     @SerializedName("sense_one_image_text")
     private String senseOneText;
 
+    @ColumnInfo
     @SerializedName("sense_two_image_text")
     private String senseTwoText;
 
+    @ColumnInfo
     @SerializedName("sense_one_image")
     private String senseOneImage;
 
+    @ColumnInfo
     @SerializedName("sense_two_image")
     private String senseTwoImage;
 

@@ -74,6 +74,4 @@ public class SharedPreferencesManager {
     public static boolean getIsFirstTime(Context context) {
         return getSharedPreference(context).getBoolean(isFirstTime, true);
     }
-
-
 }

@@ -51,6 +51,7 @@ public class DimensionFragment extends Fragment implements ImageClickInterface {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(DimensionViewModel.class);
         adapter = new DimensionRecyclerView(this);
+        viewModel.getData();
         observeData();
     }
 
@@ -69,10 +70,12 @@ public class DimensionFragment extends Fragment implements ImageClickInterface {
                 binding.dimensionErrorText.setVisibility(View.GONE);
             }
         });
-        viewModel.getDataAPI().observe(getViewLifecycleOwner(), model -> {
-            binding.dimensionNext.setVisibility(View.VISIBLE);
-            dimensionModelList = model;
-            show(dimensionModelList.get(0));
+        viewModel.listMutableLiveData.observe(getViewLifecycleOwner(), model -> {
+            if (model.size() >= 1) {
+                binding.dimensionNext.setVisibility(View.VISIBLE);
+                dimensionModelList = model;
+                show(dimensionModelList.get(0));
+            }
         });
         actions();
     }

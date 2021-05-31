@@ -43,7 +43,7 @@ public class ColorFragment extends Fragment implements ImageClickInterface {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         colorViewModel = new ViewModelProvider(requireActivity()).get(ColorViewModel.class);
-
+        colorViewModel.getData();
         observeData();
     }
 
@@ -62,10 +62,14 @@ public class ColorFragment extends Fragment implements ImageClickInterface {
                 binding.colorErrorText.setVisibility(View.GONE);
             }
         });
-        colorViewModel.getDataAPI().observe(getViewLifecycleOwner(), model -> {
-            adapterColor = new ColorRecyclerView(model, this);
-            binding.colorRecyclerView.setAdapter(adapterColor);
+        colorViewModel.colorModel.observe(getViewLifecycleOwner(), model -> {
+            if (model.size() >= 1) {
+                adapterColor = new ColorRecyclerView(model, this);
+                binding.colorRecyclerView.setAdapter(adapterColor);
+            }
         });
+
+
     }
 
     @Override

@@ -33,5 +33,4 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
             e.printStackTrace();
         }
     }
-
 }

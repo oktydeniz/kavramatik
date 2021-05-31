@@ -1,17 +1,26 @@
 package com.kavramatik.kavramatik.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
-public class ShapeModel {
+@Entity
+public class ShapeModel implements BaseModel {
+    @PrimaryKey
     @SerializedName("id")
     private int id;
 
+    @ColumnInfo
     @SerializedName("shape_name")
     private String shapeName;
 
+    @ColumnInfo
     @SerializedName("shape_text")
     private String ShapeText;
 
+    @ColumnInfo
     @SerializedName("shape_image")
     private String shapeImage;
 

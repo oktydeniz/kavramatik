@@ -50,6 +50,7 @@ public class NumberFragment extends Fragment implements ImageClickInterface {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(NumberViewModel.class);
         numberAdapter = new NumberRecyclerView(this);
+        viewModel.getData();
         observeData();
     }
 
@@ -68,10 +69,12 @@ public class NumberFragment extends Fragment implements ImageClickInterface {
                 binding.numberErrorText.setVisibility(View.GONE);
             }
         });
-        viewModel.getDataAPI().observe(getViewLifecycleOwner(), model -> {
-            binding.numberNext.setVisibility(View.VISIBLE);
-            numberModels = model;
-            show(numberModels.get(0));
+        viewModel.numberModel.observe(getViewLifecycleOwner(), model -> {
+            if (model.size() >= 1) {
+                binding.numberNext.setVisibility(View.VISIBLE);
+                numberModels = model;
+                show(numberModels.get(0));
+            }
         });
         actions();
     }

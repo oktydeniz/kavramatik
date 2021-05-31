@@ -50,7 +50,7 @@ public class SenseFragment extends Fragment implements ImageClickInterface {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(SenseViewModel.class);
         adapter = new SenseRecyclerView(this);
-        viewModel.getDataAPI();
+        viewModel.getData();
         observeData();
     }
 
@@ -70,10 +70,11 @@ public class SenseFragment extends Fragment implements ImageClickInterface {
             }
         });
         viewModel.listMutableLiveData.observe(getViewLifecycleOwner(), model -> {
-            binding.senseNext.setVisibility(View.VISIBLE);
-            senseModels = model;
-            show(senseModels.get(0));
-
+            if (model.size() >= 1) {
+                binding.senseNext.setVisibility(View.VISIBLE);
+                senseModels = model;
+                show(senseModels.get(0));
+            }
         });
         actions();
     }

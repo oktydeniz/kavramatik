@@ -1,18 +1,27 @@
 package com.kavramatik.kavramatik.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
-public class EmotionModel {
+@Entity
+public class EmotionModel implements BaseModel {
 
+    @PrimaryKey
     @SerializedName("id")
     private int id;
 
+    @ColumnInfo
     @SerializedName("emotion_name")
     private String emotionName;
 
+    @ColumnInfo
     @SerializedName("emotion_text")
     private String emotionText;
 
+    @ColumnInfo
     @SerializedName("emotion_image")
     private String emotionImage;
 

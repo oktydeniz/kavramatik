@@ -1,32 +1,43 @@
 package com.kavramatik.kavramatik.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
-public class OppositesModel {
+@Entity
+public class OppositesModel implements BaseModel {
 
+    @PrimaryKey
     @SerializedName("id")
-    private String id;
+    private int id;
 
+    @ColumnInfo
     @SerializedName("opposite_name")
     private String oppositeName;
 
+    @ColumnInfo
     @SerializedName("opposite_one_image_text")
     private String oppositeOneImageText;
 
+    @ColumnInfo
     @SerializedName("opposite_two_image_text")
     private String oppositeTwoImageText;
 
+    @ColumnInfo
     @SerializedName("opposite_one_image")
     private String oppositeOneImage;
 
+    @ColumnInfo
     @SerializedName("opposite_two_image")
     private String oppositeTwoImage;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

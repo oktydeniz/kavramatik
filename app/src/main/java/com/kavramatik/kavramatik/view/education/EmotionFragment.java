@@ -52,6 +52,7 @@ public class EmotionFragment extends Fragment implements ImageClickInterface {
         super.onViewCreated(view, savedInstanceState);
         emotionViewModel = new ViewModelProvider(requireActivity()).get(EmotionViewModel.class);
         adapter = new EmotionRecyclerView(this);
+        emotionViewModel.getData();
         observeData();
     }
 
@@ -70,10 +71,12 @@ public class EmotionFragment extends Fragment implements ImageClickInterface {
                 binding.emotionProgress.setVisibility(View.GONE);
             }
         });
-        emotionViewModel.getDataAPI().observe(getViewLifecycleOwner(), model -> {
-            binding.emotionNext.setVisibility(View.VISIBLE);
-            emotionModelList = model;
-            show(emotionModelList.get(0));
+        emotionViewModel.mutableLiveData.observe(getViewLifecycleOwner(), model -> {
+            if (model.size() >= 1) {
+                binding.emotionNext.setVisibility(View.VISIBLE);
+                emotionModelList = model;
+                show(emotionModelList.get(0));
+            }
         });
         actions();
     }

@@ -1,18 +1,27 @@
 package com.kavramatik.kavramatik.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
-public class ColorModel {
+@Entity
+public class ColorModel implements BaseModel {
 
+    @PrimaryKey
     @SerializedName("id")
     private int id;
 
+    @ColumnInfo
     @SerializedName("color_name")
     private String colorName;
 
+    @ColumnInfo
     @SerializedName("color_text")
     private String colorText;
 
+    @ColumnInfo
     @SerializedName("color_image")
     private String colorImage;
 
@@ -46,5 +55,15 @@ public class ColorModel {
 
     public void setColorImage(String colorImage) {
         this.colorImage = colorImage;
+    }
+
+    @Override
+    public String toString() {
+        return "ColorModel{" +
+                "id=" + id +
+                ", colorName='" + colorName + '\'' +
+                ", colorText='" + colorText + '\'' +
+                ", colorImage='" + colorImage + '\'' +
+                '}';
     }
 }
