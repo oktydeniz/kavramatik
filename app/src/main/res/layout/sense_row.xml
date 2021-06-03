@@ -52,6 +52,7 @@
             android:layout_marginTop="24dp"
             android:text="@{sense.senseName}"
             android:textAlignment="center"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.526"
             app:layout_constraintStart_toStartOf="parent"

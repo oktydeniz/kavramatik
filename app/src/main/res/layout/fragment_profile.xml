@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -127,37 +128,17 @@
                 android:textSize="@dimen/education_screen_text_size_sm" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/openGoogleTTSPage"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/settingInButton"
+            android:layout_width="@dimen/login_button_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/login_margin_top_size"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/open_google_tts_on_play_store"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/education_screen_text_size" />
-
-        <TextView
-            android:id="@+id/openForRateUs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/login_margin_top_size"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/rate_us"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/education_screen_text_size" />
-
-        <TextView
-            android:id="@+id/appVersionText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/text_view_margin_top"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/education_screen_text_size_ex_sm" />
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/app_button"
+            android:text="@string/settings"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:backgroundTint="@null" />
     </LinearLayout>
 </ScrollView>

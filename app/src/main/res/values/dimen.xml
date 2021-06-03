@@ -27,4 +27,8 @@
     <dimen name="profile_weight_three">3</dimen>
 
     <dimen name="loading_dialog_height">250dp</dimen>
+
+    <dimen name="list_height_size">75dp</dimen>
+    <dimen name="list_height_margin_top">10dp</dimen>
+    <dimen name="list_height_text_size">35sp</dimen>
 </resources>

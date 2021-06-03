@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_educationCategories_to_oppositesFragment"
             app:destination="@id/oppositesFragment" />
+        <action
+            android:id="@+id/action_educationCategories_to_speechListFragment"
+            app:destination="@id/speechListFragment" />
     </fragment>
     <fragment
         android:id="@+id/dimensionFragment"
@@ -82,6 +85,9 @@
             app:destination="@id/choiceFragment"
             app:popUpTo="@id/choiceFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFragment_to_mainSettings"
+            app:destination="@id/mainSettings" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -152,4 +158,23 @@
         android:name="com.kavramatik.kavramatik.view.education.OppositesFragment"
         android:label="fragment_opposites"
         tools:layout="@layout/fragment_opposites" />
+    <fragment
+        android:id="@+id/mainSettings"
+        android:name="com.kavramatik.kavramatik.view.setting.MainSettings"
+        android:label="fragment_main_settings"
+        tools:layout="@layout/fragment_main_settings" />
+    <fragment
+        android:id="@+id/speechListFragment"
+        android:name="com.kavramatik.kavramatik.view.education.SpeechListFragment"
+        android:label="fragment_speech_list"
+        tools:layout="@layout/fragment_speech_list" >
+        <action
+            android:id="@+id/action_speechListFragment_to_speechFragment"
+            app:destination="@id/speechFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/speechFragment"
+        android:name="com.kavramatik.kavramatik.view.education.SpeechFragment"
+        android:label="fragment_speech"
+        tools:layout="@layout/fragment_speech" />
 </navigation>

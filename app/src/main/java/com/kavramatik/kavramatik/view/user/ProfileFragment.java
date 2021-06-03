@@ -1,15 +1,13 @@
 package com.kavramatik.kavramatik.view.user;
 
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -66,38 +64,16 @@ public class ProfileFragment extends Fragment {
             NavController controller = NavHostFragment.findNavController(this);
             controller.navigate(R.id.action_profileFragment_to_loginFragment);
         });
-        binding.openGoogleTTSPage.setOnClickListener(v -> {
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=" + "com.google.android.tts")));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        binding.openForRateUs.setOnClickListener(v -> {
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=" + requireContext().getPackageName())));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
         binding.singOutTextView.setOnClickListener(v -> singOut());
+        binding.settingInButton.setOnClickListener(v -> {
+            NavDirections directions = ProfileFragmentDirections.actionProfileFragmentToMainSettings();
+            Navigation.findNavController(v).navigate(directions);
+        });
     }
 
     private void initializeValues() {
         appAlertDialogs = new AppAlertDialogs(getActivity());
         getSharedPreferenceValues();
-        //Get App Version For Show in TextView
-        String version = requireContext().getResources().getString(R.string.app_version);
-        try {
-            PackageInfo pInfo = requireContext().getPackageManager().getPackageInfo(requireContext().getPackageName(), 0);
-            version += pInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-            version += "0.0";
-        }
-        binding.appVersionText.setText(version);
 
         //Set TextView status if true don't show and if not show the view
         int result = SharedPreferencesManager.getUserId(getContext());

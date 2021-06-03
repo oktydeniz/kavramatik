@@ -76,6 +76,10 @@ public class EducationCategories extends Fragment {
             NavDirections directions = EducationCategoriesDirections.actionEducationCategoriesToOppositesFragment();
             Navigation.findNavController(v).navigate(directions);
         });
+        binding.speech.setOnClickListener(v -> {
+            NavDirections directions = EducationCategoriesDirections.actionEducationCategoriesToSpeechListFragment();
+            Navigation.findNavController(v).navigate(directions);
+        });
     }
 
     @Override
