@@ -12,11 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kavramatik.kavramatik.R;
 import com.kavramatik.kavramatik.adapter.DimensionRecyclerView;
 import com.kavramatik.kavramatik.databinding.FragmentDimensionBinding;
 import com.kavramatik.kavramatik.model.DimensionModel;
+import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.DimensionViewModel;
 
 import java.util.List;
@@ -49,6 +52,12 @@ public class DimensionFragment extends Fragment implements ImageClickInterface {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        boolean isFirst = SharedPreferencesManager.getEducationAssistantD(requireContext());
+        if (isFirst) {
+            textToSpeech = new TextToSpeech(getContext(), status -> GoogleTTS.getSpeech(getResources().getString(R.string.education_assistant), getContext(), status, this.textToSpeech));
+            AppAlertDialogs.educationAssistant(requireContext());
+            SharedPreferencesManager.setEducationAssistantD(requireContext(), false);
+        }
         viewModel = new ViewModelProvider(requireActivity()).get(DimensionViewModel.class);
         adapter = new DimensionRecyclerView(this);
         viewModel.getData();

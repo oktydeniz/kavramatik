@@ -6,13 +6,16 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
+import android.speech.tts.TextToSpeech;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kavramatik.kavramatik.R;
 
+
 public class AppAlertDialogs {
     private final Activity classActivity;
     private AlertDialog alertDialog;
+    public static TextToSpeech textToSpeech;
 
     public static void showOnlyOnce(Context context, DialogInterface.OnClickListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -49,12 +52,39 @@ public class AppAlertDialogs {
         dialog.show();
     }
 
+    public static void permissionDialog(Context context) {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.assistant);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setWindowAnimations(R.style.AnimationForDialogs);
+        dialog.show();
+    }
+
     public void startLoadingDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(classActivity);
         builder.setView(R.layout.loading_dialog);
         builder.setCancelable(false);
         alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public static void educationAssistant(Context context) {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.education_assistant);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setWindowAnimations(R.style.AnimationForDialogs);
+        dialog.show();
+    }
+
+    public static void sstDialogForInstall(Context context) {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.transparent_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setWindowAnimations(R.style.AnimationForDialogs);
+        FloatingActionButton button = dialog.findViewById(R.id.openSettingMenu);
+        button.setOnClickListener(v -> IntentsTTS.sttApp(context));
+        dialog.show();
+
     }
 
     public void dismissLoading() {

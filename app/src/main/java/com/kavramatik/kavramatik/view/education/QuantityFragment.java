@@ -12,11 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kavramatik.kavramatik.R;
 import com.kavramatik.kavramatik.adapter.QuantityRecyclerView;
 import com.kavramatik.kavramatik.databinding.FragmentQuantityBinding;
 import com.kavramatik.kavramatik.model.QuantityModel;
+import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.QuantityViewModel;
 
 import java.util.List;
@@ -50,6 +53,12 @@ public class QuantityFragment extends Fragment implements ImageClickInterface {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        boolean isFirst = SharedPreferencesManager.getEducationAssistantD(requireContext());
+        if (isFirst) {
+            textToSpeech = new TextToSpeech(getContext(), status -> GoogleTTS.getSpeech(getResources().getString(R.string.education_assistant), getContext(), status, this.textToSpeech));
+            AppAlertDialogs.educationAssistant(requireContext());
+            SharedPreferencesManager.setEducationAssistantD(requireContext(), false);
+        }
         quantityViewModel = new ViewModelProvider(requireActivity()).get(QuantityViewModel.class);
         adapter = new QuantityRecyclerView(this);
         quantityViewModel.getData();

@@ -12,10 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kavramatik.kavramatik.R;
 import com.kavramatik.kavramatik.adapter.ShapeRecyclerView;
 import com.kavramatik.kavramatik.databinding.FragmentShapeBinding;
+import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.ShapeViewModel;
 
 public class ShapeFragment extends Fragment implements ImageClickInterface {
@@ -43,6 +46,12 @@ public class ShapeFragment extends Fragment implements ImageClickInterface {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        boolean isFirst = SharedPreferencesManager.getEducationAssistantD(requireContext());
+        if (isFirst) {
+            textToSpeech = new TextToSpeech(getContext(), status -> GoogleTTS.getSpeech(getResources().getString(R.string.education_assistant), getContext(), status, this.textToSpeech));
+            AppAlertDialogs.educationAssistant(requireContext());
+            SharedPreferencesManager.setEducationAssistantD(requireContext(), false);
+        }
         shapeViewModel = new ViewModelProvider(requireActivity()).get(ShapeViewModel.class);
         shapeViewModel.getData();
         observeData();

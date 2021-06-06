@@ -15,7 +15,10 @@ public class SharedPreferencesManager {
     private static final String userName = "userName";
     private static final String score = "score";
     public static final String nullValue = "----";
-
+    public static final String permission = "permission";
+    public static final String educationDialog = "educationAssistant";
+    public static final String sttIsFirst = "sttIsFirst";
+    public static final String isLoadingFirst = "isLoadingFirst";
 
     private SharedPreferencesManager() {
     }
@@ -74,4 +77,45 @@ public class SharedPreferencesManager {
     public static boolean getIsFirstTime(Context context) {
         return getSharedPreference(context).getBoolean(isFirstTime, true);
     }
+
+    public static boolean getPermissionResult(Context context) {
+        return getSharedPreference(context).getBoolean(permission, false);
+    }
+
+    public static void setPermissionResult(Context context, boolean prm) {
+        final SharedPreferences.Editor editor = getSharedPreference(context).edit();
+        editor.putBoolean(permission, prm);
+        editor.apply();
+    }
+
+    public static void setEducationAssistantD(Context context, boolean prm) {
+        final SharedPreferences.Editor editor = getSharedPreference(context).edit();
+        editor.putBoolean(educationDialog, prm);
+        editor.apply();
+    }
+
+    public static boolean getEducationAssistantD(Context context) {
+        return getSharedPreference(context).getBoolean(educationDialog, true);
+    }
+
+    public static void setSttIsFirst(Context context, boolean prm) {
+        final SharedPreferences.Editor editor = getSharedPreference(context).edit();
+        editor.putBoolean(sttIsFirst, prm);
+        editor.apply();
+    }
+
+    public static boolean getSttIsFirst(Context context) {
+        return getSharedPreference(context).getBoolean(sttIsFirst, true);
+    }
+
+    public static boolean getLoadingFirst(Context context) {
+        return getSharedPreference(context).getBoolean(isLoadingFirst, true);
+    }
+
+    public static void setLoadingFirst(Context context, boolean prm) {
+        final SharedPreferences.Editor editor = getSharedPreference(context).edit();
+        editor.putBoolean(isLoadingFirst, prm);
+        editor.apply();
+    }
+
 }

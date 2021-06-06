@@ -67,4 +67,15 @@
     <string name="speak">Konuştur</string>
     <string name="open_tts_languages">TTS Motorunun Dillerini Aç</string>
     <string name="speech">Konuşma Alıştırmaları</string>
+    <string name="stt_listener"> %1$s Dediniz ! </string>
+    <string name="start_listen">Başla</string>
+    <string name="education_assistant">Her alana tıkladıktan sonra size tıklanan resmi seslendireceğiz.Hadi Deniyelim ! </string>
+    <string name="stt_question">Butona dokunduktan sonra aşağıdaki resmin adını söyleyiniz !</string>
+    <string name="permission_tex">İstediğin kategoriyi seçtikten sonra mikrofonu kullanmak için gelen ekrandan izin ver yazan yere basınız</string>
+    <string name="start_speaking">Seslendirmeye Başla</string>
+    <string name="stt_app_not_install">Ses Tanıma işlemini Yapacak Uygulama Hazır Değil</string>
+    <string name="time">Süre :</string>
+    <string name="congratulations">Bölüm Bitti ! </string>
+    <string name="main_menu">Ana Menüye Dön</string>
+
 </resources>

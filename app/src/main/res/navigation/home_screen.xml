@@ -176,5 +176,14 @@
         android:id="@+id/speechFragment"
         android:name="com.kavramatik.kavramatik.view.education.SpeechFragment"
         android:label="fragment_speech"
-        tools:layout="@layout/fragment_speech" />
+        tools:layout="@layout/fragment_speech" >
+        <argument
+            android:name="model"
+            app:argType="com.kavramatik.kavramatik.model.STTPassModel" />
+        <action
+            android:id="@+id/action_speechFragment_to_speechListFragment"
+            app:destination="@id/speechListFragment"
+            app:popUpTo="@id/speechFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

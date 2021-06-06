@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kavramatik.kavramatik.databinding.FragmentEducationCategoriesBinding;
+import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 
 public class EducationCategories extends Fragment {
 
@@ -40,6 +41,7 @@ public class EducationCategories extends Fragment {
     }
 
     private void actions() {
+        SharedPreferencesManager.setLoadingFirst(requireContext(), true);
         binding.colors.setOnClickListener(v -> {
             NavDirections directions = EducationCategoriesDirections.actionEducationCategoriesToColorFragment();
             Navigation.findNavController(v).navigate(directions);

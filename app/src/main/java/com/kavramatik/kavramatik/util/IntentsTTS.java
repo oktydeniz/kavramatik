@@ -37,4 +37,13 @@ public class IntentsTTS {
             e.printStackTrace();
         }
     }
+
+    public static void sttApp(Context context) {
+        try {
+            context.startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=" + "com.google.android.googlequicksearchbox")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

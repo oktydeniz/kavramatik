@@ -65,4 +65,14 @@
     <string name="speak">Speak</string>
     <string name="open_tts_languages">Open TTS Languages</string>
     <string name="speech">Speech</string>
+    <string name="stt_question">After touching the button, say the name of below image</string>
+    <string name="stt_listener">Your Said : %1$s </string>
+    <string name="start_listen">Start</string>
+    <string name="permission_tex">After selecting the category you want, press the place that says allow on the screen to use the microphone.</string>
+    <string name="education_assistant">After you click on each field, we will play the sound the clicked image for you. Let\'s Try! </string>
+    <string name="start_speaking">Start Speaking</string>
+    <string name="stt_app_not_install">Sorry Your devices is not support</string>
+    <string name="time">Time :</string>
+    <string name="congratulations">Category Done</string>
+    <string name="main_menu">Main Menu</string>
 </resources>
