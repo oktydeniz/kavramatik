@@ -53,7 +53,12 @@ public class SendMailFragment extends Fragment {
     }
 
     private void actions() {
-        binding.sendMailButton.setOnClickListener(v -> sendMail());
+        binding.sendMailButton.setOnClickListener(v -> {
+            if (ValidateClass.editTextEmailIsNull(binding.mailEmailEditText)) {
+                sendMail();
+            }
+
+        });
         changePassword();
     }
 
@@ -84,6 +89,7 @@ public class SendMailFragment extends Fragment {
                 appAlertDialogs.dismissLoading();
             }
         });
+
     }
 
     private void changePassword() {

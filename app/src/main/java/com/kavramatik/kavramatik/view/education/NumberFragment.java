@@ -11,11 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kavramatik.kavramatik.R;
 import com.kavramatik.kavramatik.adapter.NumberRecyclerView;
 import com.kavramatik.kavramatik.databinding.FragmentNumberBinding;
 import com.kavramatik.kavramatik.model.NumberModel;
+import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.NumberViewModel;
 
 import java.util.List;
@@ -48,6 +51,12 @@ public class NumberFragment extends Fragment implements ImageClickInterface {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        boolean isFirst = SharedPreferencesManager.getEducationAssistantD(requireContext());
+        if (isFirst) {
+            textToSpeech = new TextToSpeech(getContext(), status -> GoogleTTS.getSpeech(getResources().getString(R.string.education_assistant), getContext(), status, this.textToSpeech));
+            AppAlertDialogs.educationAssistant(requireContext());
+            SharedPreferencesManager.setEducationAssistantD(requireContext(), false);
+        }
         viewModel = new ViewModelProvider(requireActivity()).get(NumberViewModel.class);
         numberAdapter = new NumberRecyclerView(this);
         viewModel.getData();

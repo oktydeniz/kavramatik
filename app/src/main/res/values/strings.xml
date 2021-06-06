@@ -17,8 +17,8 @@
     <string name="user_options">User Options</string>
     <string name="not_ready_yet">Not Ready Yet !</string>
     <string name="something_went_wrong">Something Went Wrong</string>
-    <string name="opening_dialog_text">The application contains images with sound feedback in it. For these voiceover to work efficiently, please check that the Google TTS application is installed and updated.</string>
-    <string name="continue_text">Continue</string>
+    <string name="opening_dialog_text">The application contains images with sound feedback in it.For these voiceover to work efficiently, please check that the Google TTS application is installed and updated. If you are using a different sound engine, please make sure the Turkish language support plugin is selected.</string>
+    <string name="continue_text">Open Google Play</string>
     <string name="information">Information</string>
     <string name="okay">Okay</string>
     <string name="cancel">Cancel</string>
@@ -45,10 +45,34 @@
     <string name="send">Send</string>
     <string name="verification_code">Verification Code</string>
     <string name="save">Save</string>
-    <string name="enter_email_to_send">Just enter the email address you have uset to register with us and we will send you a reset link!</string>
+    <string name="enter_email_to_send">Just enter the email address you have used to register with us and we will send you a reset link!</string>
     <string name="sing_out">Sing Out</string>
     <string name="first_sing_in">First Sing in</string>
     <string name="update">Update</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
+    <string name="license_text_trans"><![CDATA[<a href=\'https://pngtree.com/so/boy-clipart\'>boy clipart png from pngtree.com</a>]]></string>
+    <string name="license_text_assistant"><![CDATA[<a href=\'https://pngtree.com/so/character\'>character png from pngtree.com</a></a>]]></string>
+    <string name="close">close</string>
+    <string name="check_menu_tts">Something is not working properly let\'s check it now</string>
+    <string name="no_tts_engine">No TTS engine found. Let\'s Upload</string>
+    <string name="open_tts_engine">Check Settings</string>
+    <string name="open_tts_settings">Open TTS Engine</string>
+    <string name="voice_settings">Voice settings</string>
+    <string name="pitch">Pitch</string>
+    <string name="speech_speed">Speech Speed</string>
+    <string name="the_new_values_will_be_pronounced_like_this">The new values will be pronounced like this.</string>
+    <string name="speak">Speak</string>
+    <string name="open_tts_languages">Open TTS Languages</string>
+    <string name="speech">Speech</string>
+    <string name="stt_question">After touching the button, say the name of below image</string>
+    <string name="stt_listener">Your Said : %1$s </string>
+    <string name="start_listen">Start</string>
+    <string name="permission_tex">After selecting the category you want, press the place that says allow on the screen to use the microphone.</string>
+    <string name="education_assistant">After you click on each field, we will play the sound the clicked image for you. Let\'s Try! </string>
+    <string name="start_speaking">Start Speaking</string>
+    <string name="stt_app_not_install">Sorry Your devices is not support</string>
+    <string name="time">Time :</string>
+    <string name="congratulations">Category Done</string>
+    <string name="main_menu">Main Menu</string>
 </resources>

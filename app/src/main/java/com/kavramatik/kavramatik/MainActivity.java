@@ -1,22 +1,27 @@
 package com.kavramatik.kavramatik;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
+import com.kavramatik.kavramatik.util.IntentsTTS;
 import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 
 public class MainActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        actionBar = getSupportActionBar();
+        ColorDrawable drawable = new ColorDrawable(Color.parseColor("#FF018786"));
+        actionBar.setBackgroundDrawable(drawable);
         boolean isFirstTime = SharedPreferencesManager.getIsFirstTime(this);
         if (isFirstTime) {
             AppAlertDialogs.showOnlyOnce(MainActivity.this, this);
@@ -26,11 +31,10 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        try {
-            startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=" + "com.google.android.tts")));
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (which == DialogInterface.BUTTON_POSITIVE) {
+            IntentsTTS.installTTS(getApplicationContext());
+        } else if (which == DialogInterface.BUTTON_NEGATIVE) {
+            IntentsTTS.openTTSSettings(getApplicationContext());
         }
     }
 }

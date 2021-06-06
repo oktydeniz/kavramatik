@@ -33,6 +33,7 @@
             android:layout_marginTop="@dimen/text_view_margin_top"
             android:text="@{shape.shapeName}"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="@dimen/education_screen_text_size" />
     </LinearLayout>
 </layout>

@@ -2,59 +2,89 @@ package com.kavramatik.kavramatik.util;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.view.LayoutInflater;
+import android.graphics.drawable.ColorDrawable;
+import android.speech.tts.TextToSpeech;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kavramatik.kavramatik.R;
 
+
 public class AppAlertDialogs {
-    private Activity classActivity;
+    private final Activity classActivity;
     private AlertDialog alertDialog;
+    public static TextToSpeech textToSpeech;
 
     public static void showOnlyOnce(Context context, DialogInterface.OnClickListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(R.string.opening_dialog_text);
-        builder.setCancelable(true); //TODO::Get false when app done !!!
+        builder.setCancelable(false);
         builder.setTitle(R.string.information);
         builder.setPositiveButton(R.string.continue_text, listener);
+        builder.setNegativeButton(R.string.open_tts_engine, listener);
         builder.create().show();
-    }
-
-    public AppAlertDialogs() {
-
     }
 
     public AppAlertDialogs(Activity activity) {
         this.classActivity = activity;
     }
 
-    public static void showAlertDialog(Context context, String title, String msg) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(title);
-        builder.setMessage(msg);
-        builder.setPositiveButton(R.string.okay, (dialog, which) -> {
-        });
-        builder.create().show();
+    public static void noTTSPacketDialog(Context context) {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.install_tts_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setWindowAnimations(R.style.AnimationForDialogs);
+        FloatingActionButton button = dialog.findViewById(R.id.openPlayStore);
+        button.setOnClickListener(v -> IntentsTTS.installTTS(context));
+        dialog.show();
     }
 
 
-    public static void showAlertDialog(Context context, String title, String msg, DialogInterface.OnClickListener listener) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(title);
-        builder.setMessage(msg);
-        builder.setPositiveButton(R.string.okay, listener);
-        builder.setNegativeButton(R.string.cancel, listener);
-        builder.create().show();
+    public static void showAlertDialogForSettings(Context context) {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.transparent_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setWindowAnimations(R.style.AnimationForDialogs);
+        FloatingActionButton button = dialog.findViewById(R.id.openSettingMenu);
+        button.setOnClickListener(v -> IntentsTTS.openTTSSettings(context));
+        dialog.show();
+    }
+
+    public static void permissionDialog(Context context) {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.assistant);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setWindowAnimations(R.style.AnimationForDialogs);
+        dialog.show();
     }
 
     public void startLoadingDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(classActivity);
-        LayoutInflater inflater = classActivity.getLayoutInflater();
         builder.setView(R.layout.loading_dialog);
         builder.setCancelable(false);
         alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public static void educationAssistant(Context context) {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.education_assistant);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setWindowAnimations(R.style.AnimationForDialogs);
+        dialog.show();
+    }
+
+    public static void sstDialogForInstall(Context context) {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.transparent_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setWindowAnimations(R.style.AnimationForDialogs);
+        FloatingActionButton button = dialog.findViewById(R.id.openSettingMenu);
+        button.setOnClickListener(v -> IntentsTTS.sttApp(context));
+        dialog.show();
+
     }
 
     public void dismissLoading() {
