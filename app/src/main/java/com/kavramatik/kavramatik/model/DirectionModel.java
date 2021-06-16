@@ -25,6 +25,30 @@ public class DirectionModel implements BaseModel {
     @SerializedName("direction_image")
     private String directionImage;
 
+    @ColumnInfo
+    @SerializedName("direction_two")
+    private String directionTwo;
+
+    @ColumnInfo
+    @SerializedName("direction_two_text")
+    private String directionTwoText;
+
+    public String getDirectionTwo() {
+        return directionTwo;
+    }
+
+    public void setDirectionTwo(String directionTwo) {
+        this.directionTwo = directionTwo;
+    }
+
+    public String getDirectionTwoText() {
+        return directionTwoText;
+    }
+
+    public void setDirectionTwoText(String directionTwoText) {
+        this.directionTwoText = directionTwoText;
+    }
+
     public int getId() {
         return id;
     }

@@ -1,5 +1,6 @@
 package com.kavramatik.kavramatik.service;
 
+import com.kavramatik.kavramatik.model.ColorCompModel;
 import com.kavramatik.kavramatik.model.ColorModel;
 import com.kavramatik.kavramatik.model.DimensionModel;
 import com.kavramatik.kavramatik.model.DirectionModel;
@@ -9,6 +10,7 @@ import com.kavramatik.kavramatik.model.OppositesModel;
 import com.kavramatik.kavramatik.model.QuantityModel;
 import com.kavramatik.kavramatik.model.SenseModel;
 import com.kavramatik.kavramatik.model.ShapeModel;
+
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -43,5 +45,8 @@ public interface EducationAPI {
 
     @GET("opposites?token_id=464685648465A468464qw8A544688648W6REEWT6V")
     Single<List<OppositesModel>> getOpposites();
+
+    @GET("allcolors?token_id=464685648465A468464qw8A544688648W6REEWT6V")
+    Single<List<ColorCompModel>> getCompColors();
 
 }

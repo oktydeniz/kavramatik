@@ -24,6 +24,30 @@ public class ShapeModel implements BaseModel {
     @SerializedName("shape_image")
     private String shapeImage;
 
+    @ColumnInfo
+    @SerializedName("shape_two_text")
+    private String shapeTwoText;
+
+    @ColumnInfo
+    @SerializedName("shape_two_image")
+    private String shapeTwoImage;
+
+    public String getShapeTwoText() {
+        return shapeTwoText;
+    }
+
+    public void setShapeTwoText(String shapeTwoText) {
+        this.shapeTwoText = shapeTwoText;
+    }
+
+    public String getShapeTwoImage() {
+        return shapeTwoImage;
+    }
+
+    public void setShapeTwoImage(String shapeTwoImage) {
+        this.shapeTwoImage = shapeTwoImage;
+    }
+
     public int getId() {
         return id;
     }

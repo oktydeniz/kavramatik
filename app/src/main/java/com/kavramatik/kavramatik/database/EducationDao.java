@@ -5,6 +5,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 import com.kavramatik.kavramatik.model.BaseModel;
+import com.kavramatik.kavramatik.model.ColorCompModel;
 import com.kavramatik.kavramatik.model.ColorModel;
 import com.kavramatik.kavramatik.model.DimensionModel;
 import com.kavramatik.kavramatik.model.DirectionModel;
@@ -48,6 +49,9 @@ public interface EducationDao {
     @Insert
     void insertAllShape(List<ShapeModel> models);
 
+    @Insert
+    void insertCompColor(List<ColorCompModel> models);
+
     //Select
     @Query("SELECT * FROM ColorModel")
     List<ColorModel> getAllColor();
@@ -76,39 +80,46 @@ public interface EducationDao {
     @Query("SELECT * FROM ShapeModel")
     List<ShapeModel> getAllShape();
 
+    @Query("SELECT * FROM ColorCompModel")
+    List<ColorCompModel> getCompColors();
+
     //Delete
+
     @Query("DELETE FROM ColorModel ")
     void deleteColors();
 
-    //Delete
+
     @Query("DELETE FROM DimensionModel ")
     void deleteDimension();
 
-    //Delete
+
     @Query("DELETE FROM DirectionModel ")
     void deleteDirection();
 
-    //Delete
+
     @Query("DELETE FROM EmotionModel ")
     void deleteEmotion();
 
-    //Delete
+
     @Query("DELETE FROM NumberModel ")
     void deleteNumber();
 
-    //Delete
+
     @Query("DELETE FROM OppositesModel ")
     void deleteOpposites();
 
-    //Delete
+
     @Query("DELETE FROM QuantityModel ")
     void deleteQuantity();
 
-    //Delete
+
     @Query("DELETE FROM SenseModel ")
     void deleteSense();
 
-    //Delete
+
     @Query("DELETE FROM ShapeModel ")
     void deleteShape();
+
+    @Query("DELETE FROM ColorCompModel")
+    void deleteCompColors();
 }

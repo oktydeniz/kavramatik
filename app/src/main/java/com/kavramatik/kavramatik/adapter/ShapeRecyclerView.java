@@ -7,17 +7,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kavramatik.kavramatik.databinding.ShapeRowBinding;
+import com.kavramatik.kavramatik.model.DirectionModel;
 import com.kavramatik.kavramatik.model.ShapeModel;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
 
 import java.util.List;
 
 public class ShapeRecyclerView extends RecyclerView.Adapter<ShapeRecyclerView.ViewHolder> {
-    private final List<ShapeModel> shapeModels;
+    private ShapeModel shapeModels;
     private final ImageClickInterface imageClickInterface;
 
-    public ShapeRecyclerView(List<ShapeModel> models, ImageClickInterface clickInterface) {
-        this.shapeModels = models;
+    public ShapeRecyclerView(ImageClickInterface clickInterface) {
         this.imageClickInterface = clickInterface;
     }
 
@@ -31,15 +31,20 @@ public class ShapeRecyclerView extends RecyclerView.Adapter<ShapeRecyclerView.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ShapeRecyclerView.ViewHolder holder, int position) {
-        final ShapeModel model = shapeModels.get(position);
-        holder.binding.setShape(model);
+        holder.binding.setShape(shapeModels);
         holder.binding.executePendingBindings();
-        holder.binding.shapeCircleImage.setOnClickListener(v -> imageClickInterface.onItemClick(model.getShapeText()));
+        holder.binding.shapeCircleImage.setOnClickListener(v -> imageClickInterface.onItemClick(shapeModels.getShapeText()));
+        holder.binding.shapeCircleImageTwo.setOnClickListener(v -> imageClickInterface.onItemClick(shapeModels.getShapeTwoText()));
     }
 
     @Override
     public int getItemCount() {
-        return shapeModels.size();
+        return 1;
+    }
+
+    public void addItem(ShapeModel newModel) {
+        shapeModels = newModel;
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

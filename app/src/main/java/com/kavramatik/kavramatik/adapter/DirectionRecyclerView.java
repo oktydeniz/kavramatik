@@ -32,6 +32,7 @@ public class DirectionRecyclerView extends RecyclerView.Adapter<DirectionRecycle
         holder.binding.setDirection(directionModel);
         holder.binding.executePendingBindings();
         holder.binding.directionImage.setOnClickListener(v -> imageClickInterface.onItemClick(directionModel.getDirectionText()));
+        holder.binding.directionImageTwo.setOnClickListener(v -> imageClickInterface.onItemClick(directionModel.getDirectionTwoText()));
     }
 
     @Override

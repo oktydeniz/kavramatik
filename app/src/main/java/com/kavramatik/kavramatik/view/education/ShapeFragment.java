@@ -15,17 +15,23 @@ import android.view.ViewGroup;
 import com.kavramatik.kavramatik.R;
 import com.kavramatik.kavramatik.adapter.ShapeRecyclerView;
 import com.kavramatik.kavramatik.databinding.FragmentShapeBinding;
+import com.kavramatik.kavramatik.model.ShapeModel;
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
 import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.ShapeViewModel;
 
+import java.util.List;
+
 public class ShapeFragment extends Fragment implements ImageClickInterface {
     private FragmentShapeBinding binding;
     private TextToSpeech textToSpeech;
     private ShapeViewModel shapeViewModel;
     private ShapeRecyclerView adapter;
+    private List<ShapeModel> shapeModels;
+    private int nextOne = 1;
+    private int previous;
 
     public ShapeFragment() {
     }
@@ -54,7 +60,9 @@ public class ShapeFragment extends Fragment implements ImageClickInterface {
         }
         shapeViewModel = new ViewModelProvider(requireActivity()).get(ShapeViewModel.class);
         shapeViewModel.getData();
+        adapter = new ShapeRecyclerView(this);
         observeData();
+        actions();
     }
 
     private void observeData() {
@@ -74,10 +82,39 @@ public class ShapeFragment extends Fragment implements ImageClickInterface {
         });
         shapeViewModel.shapeModel.observe(getViewLifecycleOwner(), model -> {
             if (model.size() >= 1) {
-                adapter = new ShapeRecyclerView(model, this);
-                binding.shapeRecyclerView.setAdapter(adapter);
+                binding.shapeNextButton.setVisibility(View.VISIBLE);
+                shapeModels = model;
+                show(shapeModels.get(0));
             }
         });
+    }
+
+    private void actions() {
+        binding.shapeNextButton.setOnClickListener(v -> {
+            if (nextOne < shapeModels.size()) {
+                show(shapeModels.get(nextOne));
+                nextOne++;
+                binding.shapeBackButton.setVisibility(View.VISIBLE);
+            } else {
+                show(shapeModels.get(0));
+                nextOne = 1;
+                binding.shapeBackButton.setVisibility(View.GONE);
+            }
+        });
+        binding.shapeBackButton.setOnClickListener(v -> {
+            previous = nextOne - 2;
+            if (previous >= 0) {
+                show(shapeModels.get(previous));
+                nextOne--;
+            } else {
+                binding.shapeBackButton.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void show(ShapeModel shapeModel) {
+        adapter.addItem(shapeModel);
+        binding.shapeRecyclerView.setAdapter(adapter);
     }
 
     @Override

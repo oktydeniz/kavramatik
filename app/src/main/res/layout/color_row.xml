@@ -29,7 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/black"
-            android:layout_marginTop="@dimen/text_view_margin_top"
             android:text="@{color.colorName}"
             android:textAlignment="center"
             android:textSize="@dimen/education_screen_text_size" />

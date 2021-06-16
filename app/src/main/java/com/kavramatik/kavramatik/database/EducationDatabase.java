@@ -7,6 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.kavramatik.kavramatik.model.ColorCompModel;
 import com.kavramatik.kavramatik.model.ColorModel;
 import com.kavramatik.kavramatik.model.DimensionModel;
 import com.kavramatik.kavramatik.model.DirectionModel;
@@ -19,7 +20,7 @@ import com.kavramatik.kavramatik.model.ShapeModel;
 
 @Database(entities = {ColorModel.class, DimensionModel.class, DirectionModel.class,
         EmotionModel.class, NumberModel.class, OppositesModel.class, QuantityModel.class,
-        SenseModel.class, ShapeModel.class}, version = 1)
+        SenseModel.class, ShapeModel.class, ColorCompModel.class}, version = 1)
 @TypeConverters(DataConverter.class)
 public abstract class EducationDatabase extends RoomDatabase {
 
