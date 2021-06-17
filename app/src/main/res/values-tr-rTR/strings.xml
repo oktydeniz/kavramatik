@@ -77,5 +77,10 @@
     <string name="time">Süre :</string>
     <string name="congratulations">Bölüm Bitti ! </string>
     <string name="main_menu">Ana Menüye Dön</string>
+    <string name="options">Seçenekler</string>
+    <string name="register">Kayıt Ol</string>
+    <string name="profile">Profilim</string>
+    <string name="login_page">Giriş Yap</string>
+    <string name="send_mail">E-posta Gönder</string>
 
 </resources>

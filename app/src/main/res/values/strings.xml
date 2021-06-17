@@ -75,4 +75,9 @@
     <string name="time">Time :</string>
     <string name="congratulations">Category Done</string>
     <string name="main_menu">Main Menu</string>
+    <string name="options">Options</string>
+    <string name="register">Register</string>
+    <string name="login_page">Login</string>
+    <string name="profile">Profile</string>
+    <string name="send_mail">Send Mail</string>
 </resources>
