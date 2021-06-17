@@ -87,7 +87,11 @@
         android:id="@+id/colorFragment"
         android:name="com.kavramatik.kavramatik.view.education.ColorFragment"
         android:label="@string/colors"
-        tools:layout="@layout/fragment_color" />
+        tools:layout="@layout/fragment_color" >
+        <action
+            android:id="@+id/action_colorFragment_to_colorMatchFragment"
+            app:destination="@id/colorMatchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/shapeFragment"
         android:name="com.kavramatik.kavramatik.view.education.ShapeFragment"
@@ -225,9 +229,12 @@
             app:destination="@id/speechListFragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left"
             app:popUpTo="@id/speechFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/colorMatchFragment"
+        android:name="com.kavramatik.kavramatik.view.education.ColorMatchFragment"
+        android:label="@string/match_colors"
+        tools:layout="@layout/fragment_color_match" />
 </navigation>

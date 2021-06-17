@@ -80,4 +80,5 @@
     <string name="login_page">Login</string>
     <string name="profile">Profile</string>
     <string name="send_mail">Send Mail</string>
+    <string name="match_colors">Match To Colors</string>
 </resources>

@@ -82,5 +82,6 @@
     <string name="profile">Profilim</string>
     <string name="login_page">Giriş Yap</string>
     <string name="send_mail">E-posta Gönder</string>
+    <string name="match_colors">Renkleri Eşleştir</string>
 
 </resources>
