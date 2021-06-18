@@ -236,5 +236,11 @@
         android:id="@+id/colorMatchFragment"
         android:name="com.kavramatik.kavramatik.view.education.ColorMatchFragment"
         android:label="@string/match_colors"
-        tools:layout="@layout/fragment_color_match" />
+        tools:layout="@layout/fragment_color_match" >
+        <action
+            android:id="@+id/action_colorMatchFragment_to_colorFragment"
+            app:destination="@id/colorFragment"
+            app:popUpTo="@id/colorFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
