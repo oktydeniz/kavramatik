@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/emotionImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/size_of_images"
+            android:layout_height="@dimen/size_of_images"
             android:clickable="true"
             android:contentDescription="@{emotion.emotionName}"
             android:focusable="true"

@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.speech.tts.TextToSpeech;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,10 @@ import android.widget.Button;
 import com.kavramatik.kavramatik.R;
 import com.kavramatik.kavramatik.databinding.FragmentColorMatchBinding;
 import com.kavramatik.kavramatik.model.ColorCompModel;
+import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.Base64Util;
+import com.kavramatik.kavramatik.util.GoogleTTS;
+import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.ColorMatchViewModel;
 
 import java.util.List;
@@ -34,7 +38,10 @@ public class ColorMatchFragment extends Fragment {
     private int nextModel = 0;
     private Dialog dialog;
     MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayerLoop;
     private List<ColorCompModel> colorCompModelList;
+    TextToSpeech tts;
+
     public ColorMatchFragment() {
     }
 
@@ -53,6 +60,14 @@ public class ColorMatchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        boolean isFirst = SharedPreferencesManager.getMatchAssistant(requireContext());
+        if (isFirst) {
+            AppAlertDialogs.matchDialog(requireContext());
+            SharedPreferencesManager.setIsMatchAssistant(requireContext(), false);
+            String text = getString(R.string.match_assistant);
+            tts = new TextToSpeech(getContext(), status -> GoogleTTS.getSpeech(text, getContext(), status, this.tts));
+        }
         colorMatchViewModel = new ViewModelProvider(requireActivity()).get(ColorMatchViewModel.class);
         colorMatchViewModel.getData();
         observeData();
@@ -94,6 +109,7 @@ public class ColorMatchFragment extends Fragment {
         }
         return true;
     };
+
     private void observeData() {
         colorMatchViewModel.errorColors.observe(getViewLifecycleOwner(), i -> {
             if (i) {
@@ -108,6 +124,7 @@ public class ColorMatchFragment extends Fragment {
             if (models.size() >= 1) {
                 colorCompModelList = models;
                 show();
+                playLoop();
             }
         });
     }
@@ -132,6 +149,7 @@ public class ColorMatchFragment extends Fragment {
     }
 
     private void showFinishDialog() {
+        stopLoop();
         play();
         dialog = new Dialog(requireContext());
         dialog.setContentView(R.layout.game_over);
@@ -156,14 +174,32 @@ public class ColorMatchFragment extends Fragment {
         mediaPlayer.start();
     }
 
+    private void playLoop() {
+        if (mediaPlayerLoop == null) {
+            mediaPlayerLoop = MediaPlayer.create(requireContext(), R.raw.back_music);
+            mediaPlayerLoop.setOnCompletionListener(mp -> stop());
+        }
+        mediaPlayerLoop.start();
+    }
+
+
     private void stop() {
         stopPlayer();
+        stopLoop();
     }
 
     private void stopPlayer() {
         if (mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
+        }
+
+    }
+
+    private void stopLoop() {
+        if (mediaPlayerLoop != null) {
+            mediaPlayerLoop.release();
+            mediaPlayerLoop = null;
         }
     }
 
@@ -172,6 +208,7 @@ public class ColorMatchFragment extends Fragment {
         super.onDestroyView();
         binding = null;
         stop();
+        GoogleTTS.shotDownTTS(tts);
     }
 
     @Override

@@ -23,8 +23,8 @@
 
             <ImageView
                 android:id="@+id/directionImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/size_of_images"
+                android:layout_height="@dimen/size_of_images"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@{direction.directionText}"
                 android:focusable="true"
@@ -36,8 +36,8 @@
 
             <ImageView
                 android:id="@+id/directionImageTwo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/size_of_images"
+                android:layout_height="@dimen/size_of_images"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="32dp"
                 android:contentDescription="@{direction.directionTwoText}"
