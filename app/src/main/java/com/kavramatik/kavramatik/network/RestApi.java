@@ -33,6 +33,7 @@ public interface RestApi {
                                       @Field("user_password") String userPassword,
                                       @Field("verification") String verification);
 
+
     @FormUrlEncoded
     @POST("setScore")
     Call<ResponseModel> setScoreRequest(@Field("user_email") String userMail, @Field("score") int score);

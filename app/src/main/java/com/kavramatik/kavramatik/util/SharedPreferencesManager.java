@@ -10,7 +10,7 @@ public class SharedPreferencesManager {
     private static final String isFirstTime = "isFirstTime";
     private static final String userID = "userID";
     public static final int defaultID = -100;
-    public static final int defaultScore = 0;
+    public static final int defaultScore = 500;
     private static final String userEmail = "userEmail";
     private static final String userName = "userName";
     private static final String score = "score";
@@ -19,6 +19,7 @@ public class SharedPreferencesManager {
     public static final String educationDialog = "educationAssistant";
     public static final String sttIsFirst = "sttIsFirst";
     public static final String isLoadingFirst = "isLoadingFirst";
+    public static final String isMatchFirst = "isMatchFirst";
 
     private SharedPreferencesManager() {
     }
@@ -115,6 +116,16 @@ public class SharedPreferencesManager {
     public static void setLoadingFirst(Context context, boolean prm) {
         final SharedPreferences.Editor editor = getSharedPreference(context).edit();
         editor.putBoolean(isLoadingFirst, prm);
+        editor.apply();
+    }
+
+    public static boolean getMatchAssistant(Context context) {
+        return getSharedPreference(context).getBoolean(isMatchFirst, true);
+    }
+
+    public static void setIsMatchAssistant(Context context, boolean prm) {
+        final SharedPreferences.Editor editor = getSharedPreference(context).edit();
+        editor.putBoolean(isMatchFirst, prm);
         editor.apply();
     }
 

@@ -56,7 +56,6 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initializeValues();
         actions();
-
     }
 
     private void actions() {
@@ -150,6 +149,39 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    private void updateScore() {
+        String mail = SharedPreferencesManager.getUserEmail(getContext());
+        int userScore = SharedPreferencesManager.getScore(getContext());
+        if (!mail.equals(SharedPreferencesManager.nullValue)) {
+            Call<ResponseModel> call = ManagerAll.getInstance().setNewScore(mail, userScore);
+            call.enqueue(new Callback<ResponseModel>() {
+                @Override
+                public void onResponse(@NonNull Call<ResponseModel> call, @NonNull Response<ResponseModel> response) {
+                    if (response.isSuccessful()) {
+                        if (response.body() != null) {
+                            if (response.body().getResponse()) {
+                                setSharedPreferenceValues(response.body().getUserId(),
+                                        response.body().getUserEmail(),
+                                        response.body().getUserName(),
+                                        response.body().getScore());
+                                getSharedPreferenceValues();
+                            } else if (!response.body().getResponse()) {
+                                Toast.makeText(getContext(), getResources().getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ResponseModel> call, @NonNull Throwable t) {
+                    Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(getContext(), getResources().getString(R.string.first_sing_in), Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -159,7 +191,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.updateProfile) {
-            updateProfile();
+            updateScore();
         }
         return super.onOptionsItemSelected(item);
     }

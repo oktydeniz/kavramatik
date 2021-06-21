@@ -7,7 +7,7 @@
     <string name="dimensions">Boyutlar</string>
     <string name="shapes">Şekiller</string>
     <string name="quantities">Miktarlar</string>
-    <string name="directions">Yönler</string>
+    <string name="directions">Konumlar</string>
     <string name="numbers">Rakamlar</string>
     <string name="senses">Duyular</string>
     <string name="emotions">Duygular</string>
@@ -77,5 +77,12 @@
     <string name="time">Süre :</string>
     <string name="congratulations">Bölüm Bitti ! </string>
     <string name="main_menu">Ana Menüye Dön</string>
+    <string name="options">Seçenekler</string>
+    <string name="register">Kayıt Ol</string>
+    <string name="profile">Profilim</string>
+    <string name="login_page">Giriş Yap</string>
+    <string name="send_mail">E-posta Gönder</string>
+    <string name="match_assistant">Her objeyi kendi rengi ile eşleştirin </string>
+    <string name="match_colors">Renkleri Eşleştir</string>
 
 </resources>

@@ -57,13 +57,4 @@ public class ColorModel implements BaseModel {
         this.colorImage = colorImage;
     }
 
-    @Override
-    public String toString() {
-        return "ColorModel{" +
-                "id=" + id +
-                ", colorName='" + colorName + '\'' +
-                ", colorText='" + colorText + '\'' +
-                ", colorImage='" + colorImage + '\'' +
-                '}';
-    }
 }

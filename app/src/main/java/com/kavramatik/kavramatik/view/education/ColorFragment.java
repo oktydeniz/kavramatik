@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
@@ -15,17 +17,23 @@ import android.view.ViewGroup;
 import com.kavramatik.kavramatik.R;
 import com.kavramatik.kavramatik.adapter.ColorRecyclerView;
 import com.kavramatik.kavramatik.databinding.FragmentColorBinding;
+import com.kavramatik.kavramatik.model.ColorModel;
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
 import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.ColorViewModel;
 
+import java.util.List;
+
 public class ColorFragment extends Fragment implements ImageClickInterface {
     private ColorViewModel colorViewModel;
     private TextToSpeech textToSpeech;
     private FragmentColorBinding binding;
     private ColorRecyclerView adapterColor;
+    private int nextOne = 1;
+    private int previous;
+    private List<ColorModel> colorModels;
 
     public ColorFragment() {
     }
@@ -53,15 +61,18 @@ public class ColorFragment extends Fragment implements ImageClickInterface {
         }
         colorViewModel = new ViewModelProvider(requireActivity()).get(ColorViewModel.class);
         colorViewModel.getData();
+        adapterColor = new ColorRecyclerView(this);
         observeData();
+
     }
+
 
     private void observeData() {
         colorViewModel.loading.observe(getViewLifecycleOwner(), i -> {
             if (i) {
-                binding.progressBar.setVisibility(View.VISIBLE);
+                binding.colorProgress.setVisibility(View.VISIBLE);
             } else {
-                binding.progressBar.setVisibility(View.GONE);
+                binding.colorProgress.setVisibility(View.GONE);
             }
         });
         colorViewModel.error.observe(getViewLifecycleOwner(), i -> {
@@ -73,12 +84,45 @@ public class ColorFragment extends Fragment implements ImageClickInterface {
         });
         colorViewModel.colorModel.observe(getViewLifecycleOwner(), model -> {
             if (model.size() >= 1) {
-                adapterColor = new ColorRecyclerView(model, this);
-                binding.colorRecyclerView.setAdapter(adapterColor);
+                colorModels = model;
+                show(colorModels.get(0));
+                binding.colorNext.setVisibility(View.VISIBLE);
+                binding.colorMatch.setVisibility(View.VISIBLE);
             }
         });
+        actions();
+    }
 
+    private void actions() {
+        binding.colorNext.setOnClickListener(v -> {
+            if (nextOne < colorModels.size()) {
+                show(colorModels.get(nextOne));
+                nextOne++;
+                binding.colorBack.setVisibility(View.VISIBLE);
+            } else {
+                show(colorModels.get(0));
+                nextOne = 1;
+                binding.colorBack.setVisibility(View.GONE);
+            }
+        });
+        binding.colorBack.setOnClickListener(v -> {
+            previous = nextOne - 2;
+            if (previous >= 0) {
+                show(colorModels.get(previous));
+                nextOne--;
+            } else {
+                binding.colorBack.setVisibility(View.GONE);
+            }
+        });
+        binding.colorMatch.setOnClickListener(v -> {
+            NavDirections directions = ColorFragmentDirections.actionColorFragmentToColorMatchFragment();
+            Navigation.findNavController(v).navigate(directions);
+        });
+    }
 
+    private void show(ColorModel colorModel) {
+        adapterColor.addNewColor(colorModel);
+        binding.colorRecyclerView.setAdapter(adapterColor);
     }
 
     @Override

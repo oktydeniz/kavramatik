@@ -16,6 +16,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
+            android:layout_gravity="center"
             android:layout_height="@dimen/login_background_image"
             android:autofillHints="@string/app_name"
             android:contentDescription="@string/app_name"
@@ -102,7 +103,7 @@
             android:layout_width="@dimen/login_button_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/text_view_margin_top"
+            android:layout_marginBottom="100dp"
             android:background="@drawable/app_button"
             android:text="@string/sing_up"
             android:textAllCaps="false"

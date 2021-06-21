@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.speech.tts.TextToSpeech;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kavramatik.kavramatik.R;
@@ -57,6 +58,15 @@ public class AppAlertDialogs {
         dialog.setContentView(R.layout.assistant);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         dialog.getWindow().setWindowAnimations(R.style.AnimationForDialogs);
+        dialog.show();
+    }
+    public static void matchDialog(Context context) {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.assistant);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setWindowAnimations(R.style.AnimationForDialogs);
+        TextView textView = dialog.findViewById(R.id.textView7);
+        textView.setText(context.getResources().getString(R.string.match_assistant));
         dialog.show();
     }
 

@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="100dp"
             android:background="@drawable/app_button"
             android:text="@string/settings"
             android:textAllCaps="false"

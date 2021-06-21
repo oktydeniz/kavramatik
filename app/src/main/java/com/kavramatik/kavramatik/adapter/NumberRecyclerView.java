@@ -35,7 +35,6 @@ public class NumberRecyclerView extends RecyclerView.Adapter<NumberRecyclerView.
         holder.binding.setNumber(model);
         holder.binding.executePendingBindings();
         holder.binding.numberImage.setOnClickListener(v -> imageClickInterface.onItemClick(model.getNumberText()));
-        holder.binding.numberQuantityImage.setOnClickListener(v -> imageClickInterface.onItemClick(model.getNumberImageText()));
 
     }
 

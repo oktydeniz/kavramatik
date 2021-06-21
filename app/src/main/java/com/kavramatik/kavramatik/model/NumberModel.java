@@ -21,17 +21,11 @@ public class NumberModel implements BaseModel {
     @SerializedName("number_one_text")
     private String numberText;
 
-    @ColumnInfo
-    @SerializedName("number_quantity_text")
-    private String numberImageText;
 
     @ColumnInfo
     @SerializedName("number_one_image")
     private String numberImage;
 
-    @ColumnInfo
-    @SerializedName("number_quantity_image")
-    private String numberQuantityImage;
 
     public int getId() {
         return id;
@@ -57,13 +51,6 @@ public class NumberModel implements BaseModel {
         this.numberText = numberText;
     }
 
-    public String getNumberImageText() {
-        return numberImageText;
-    }
-
-    public void setNumberImageText(String numberImageText) {
-        this.numberImageText = numberImageText;
-    }
 
     public String getNumberImage() {
         return numberImage;
@@ -73,11 +60,4 @@ public class NumberModel implements BaseModel {
         this.numberImage = numberImage;
     }
 
-    public String getNumberQuantityImage() {
-        return numberQuantityImage;
-    }
-
-    public void setNumberQuantityImage(String numberQuantityImage) {
-        this.numberQuantityImage = numberQuantityImage;
-    }
 }
