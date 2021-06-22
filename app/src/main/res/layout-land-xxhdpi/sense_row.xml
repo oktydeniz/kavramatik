@@ -49,15 +49,13 @@
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="176dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
                 android:text="@{sense.senseOneText}"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView15"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/senseImage"
+                app:layout_constraintStart_toStartOf="@+id/senseImage"
                 app:layout_constraintTop_toBottomOf="@+id/senseImage" />
 
             <TextView
@@ -65,10 +63,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="144dp"
                 android:text="@{sense.senseTwoText}"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/senseImageTwo"
+                app:layout_constraintStart_toStartOf="@+id/senseImageTwo"
                 app:layout_constraintTop_toBottomOf="@+id/senseImageTwo" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

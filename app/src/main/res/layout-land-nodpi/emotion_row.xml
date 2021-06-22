@@ -39,8 +39,8 @@
             android:text="@{emotion.emotionText}"
             android:textAlignment="center"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/emotionImage"
+            app:layout_constraintStart_toStartOf="@+id/emotionImage"
             app:layout_constraintTop_toBottomOf="@+id/emotionImage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

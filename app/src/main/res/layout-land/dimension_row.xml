@@ -24,11 +24,13 @@
                 android:id="@+id/firstImageDimension"
                 android:layout_width="@dimen/size_of_images"
                 android:layout_height="@dimen/size_of_images"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@{dimension.dimensionImageTextOne}"
                 android:focusable="true"
                 app:imageUrl="@{dimension.imageOne}"
                 app:layout_constraintEnd_toStartOf="@+id/secondImageDimension"
+                app:layout_constraintHorizontal_bias="0.095"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -49,20 +51,20 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="172dp"
                 android:text="@{dimension.dimensionImageTextTwo}"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/secondImageDimension"
+                app:layout_constraintStart_toStartOf="@+id/secondImageDimension"
                 app:layout_constraintTop_toBottomOf="@+id/secondImageDimension" />
 
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="172dp"
                 android:text="@{dimension.dimensionImageTextOne}"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/firstImageDimension"
+                app:layout_constraintStart_toStartOf="@+id/firstImageDimension"
                 app:layout_constraintTop_toBottomOf="@+id/firstImageDimension" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
