@@ -10,7 +10,7 @@ public class SharedPreferencesManager {
     private static final String isFirstTime = "isFirstTime";
     private static final String userID = "userID";
     public static final int defaultID = -100;
-    public static final int defaultScore = 500;
+    public static final int defaultScore = 0;
     private static final String userEmail = "userEmail";
     private static final String userName = "userName";
     private static final String score = "score";

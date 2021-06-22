@@ -32,7 +32,6 @@ import retrofit2.Response;
 public class ProfileFragment extends Fragment {
     private FragmentProfileBinding binding;
     private AppAlertDialogs appAlertDialogs;
-
     public ProfileFragment() {
 
     }
@@ -152,6 +151,7 @@ public class ProfileFragment extends Fragment {
     private void updateScore() {
         String mail = SharedPreferencesManager.getUserEmail(getContext());
         int userScore = SharedPreferencesManager.getScore(getContext());
+
         if (!mail.equals(SharedPreferencesManager.nullValue)) {
             Call<ResponseModel> call = ManagerAll.getInstance().setNewScore(mail, userScore);
             call.enqueue(new Callback<ResponseModel>() {
@@ -160,10 +160,14 @@ public class ProfileFragment extends Fragment {
                     if (response.isSuccessful()) {
                         if (response.body() != null) {
                             if (response.body().getResponse()) {
+
+                                SharedPreferencesManager.setScore(requireContext(), response.body().getScore());
                                 setSharedPreferenceValues(response.body().getUserId(),
                                         response.body().getUserEmail(),
                                         response.body().getUserName(),
                                         response.body().getScore());
+                                binding.profileUserScore.setText("");
+
                                 getSharedPreferenceValues();
                             } else if (!response.body().getResponse()) {
                                 Toast.makeText(getContext(), getResources().getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();

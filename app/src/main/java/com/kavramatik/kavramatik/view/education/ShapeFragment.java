@@ -19,6 +19,7 @@ import com.kavramatik.kavramatik.model.ShapeModel;
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.util.Scores;
 import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.ShapeViewModel;
 
@@ -96,6 +97,7 @@ public class ShapeFragment extends Fragment implements ImageClickInterface {
                 nextOne++;
                 binding.shapeBackButton.setVisibility(View.VISIBLE);
             } else {
+                Scores.updateScore(requireContext(), Scores.SHAPE_SCORE);
                 show(shapeModels.get(0));
                 nextOne = 1;
                 binding.shapeBackButton.setVisibility(View.GONE);

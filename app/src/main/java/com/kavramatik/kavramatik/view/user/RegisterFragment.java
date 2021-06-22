@@ -77,6 +77,9 @@ public class RegisterFragment extends Fragment {
                         if (response.body().getResponse()) {
                             appAlertDialogs.dismissLoading();
                             Toast.makeText(getContext(), getResources().getString(R.string.welcome_messages, name), Toast.LENGTH_LONG).show();
+                            int score = SharedPreferencesManager.getScore(requireContext());
+                            int lastScore = response.body().getScore() + score;
+                            SharedPreferencesManager.setScore(requireContext(), lastScore);
                             SharedPreferencesManager.setUserID(requireContext(), response.body().getUserId());
                             SharedPreferencesManager.setUserEmail(requireContext(), response.body().getUserEmail());
                             SharedPreferencesManager.setUserName(requireContext(), response.body().getUserName());

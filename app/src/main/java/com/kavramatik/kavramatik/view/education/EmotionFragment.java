@@ -19,6 +19,7 @@ import com.kavramatik.kavramatik.model.EmotionModel;
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.util.Scores;
 import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.EmotionViewModel;
 
@@ -97,6 +98,7 @@ public class EmotionFragment extends Fragment implements ImageClickInterface {
                 nextOne++;
                 binding.emotionBack.setVisibility(View.VISIBLE);
             } else {
+                Scores.updateScore(requireContext(), Scores.EMOTION_SCORE);
                 show(emotionModelList.get(0));
                 nextOne = 1;
                 binding.emotionBack.setVisibility(View.GONE);

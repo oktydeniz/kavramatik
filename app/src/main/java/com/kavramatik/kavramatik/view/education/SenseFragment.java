@@ -19,6 +19,7 @@ import com.kavramatik.kavramatik.model.SenseModel;
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.util.Scores;
 import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.SenseViewModel;
 
@@ -95,6 +96,7 @@ public class SenseFragment extends Fragment implements ImageClickInterface {
                 nextOne++;
                 binding.senseBack.setVisibility(View.VISIBLE);
             } else {
+                Scores.updateScore(requireContext(), Scores.SENSE_SCORE);
                 adapter.showNew(senseModels.get(0));
                 nextOne = 1;
                 binding.senseBack.setVisibility(View.GONE);
