@@ -30,6 +30,7 @@ import com.kavramatik.kavramatik.databinding.FragmentSpeechBinding;
 import com.kavramatik.kavramatik.model.STTPassModel;
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.util.Scores;
 import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 
 import java.util.ArrayList;
@@ -116,6 +117,7 @@ public class SpeechFragment extends Fragment implements ImageClickInterface {
     }
 
     private void showFinishDialog() {
+        Scores.updateScore(requireContext(), Scores.STT_SCORE);
         play();
         dialog = new Dialog(requireContext());
         dialog.setContentView(R.layout.game_over);

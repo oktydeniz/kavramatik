@@ -10,6 +10,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.kavramatik.kavramatik.model.ColorModel;
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.util.Scores;
 import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.ColorViewModel;
 
@@ -100,12 +102,14 @@ public class ColorFragment extends Fragment implements ImageClickInterface {
                 nextOne++;
                 binding.colorBack.setVisibility(View.VISIBLE);
             } else {
+                Scores.updateScore(requireContext(), Scores.COLOR_SCORE);
                 show(colorModels.get(0));
                 nextOne = 1;
                 binding.colorBack.setVisibility(View.GONE);
             }
         });
         binding.colorBack.setOnClickListener(v -> {
+
             previous = nextOne - 2;
             if (previous >= 0) {
                 show(colorModels.get(previous));

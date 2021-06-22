@@ -27,6 +27,7 @@ import com.kavramatik.kavramatik.model.ColorCompModel;
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.Base64Util;
 import com.kavramatik.kavramatik.util.GoogleTTS;
+import com.kavramatik.kavramatik.util.Scores;
 import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.ColorMatchViewModel;
 
@@ -149,6 +150,9 @@ public class ColorMatchFragment extends Fragment {
     }
 
     private void showFinishDialog() {
+        //update score
+        Scores.updateScore(requireContext(), Scores.MATCH_SCORE);
+        //finish game
         stopLoop();
         play();
         dialog = new Dialog(requireContext());

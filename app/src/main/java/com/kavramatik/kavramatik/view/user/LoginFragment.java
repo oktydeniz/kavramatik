@@ -86,7 +86,9 @@ public class LoginFragment extends Fragment {
                             SharedPreferencesManager.setUserID(requireContext(), response.body().getUserId());
                             SharedPreferencesManager.setUserEmail(requireContext(), response.body().getUserEmail());
                             SharedPreferencesManager.setUserName(requireContext(), response.body().getUserName());
-                            SharedPreferencesManager.setScore(requireContext(), response.body().getScore());
+                            int score = SharedPreferencesManager.getScore(requireContext());
+                            int lastScore = response.body().getScore() + score;
+                            SharedPreferencesManager.setScore(requireContext(), lastScore);
                             NavController controller = NavHostFragment.findNavController(LoginFragment.this);
                             controller.navigate(R.id.action_loginFragment_to_choiceFragment);
                         } else if (!response.body().getResponse()) {

@@ -19,6 +19,7 @@ import com.kavramatik.kavramatik.model.QuantityModel;
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.util.Scores;
 import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.QuantityViewModel;
 
@@ -97,6 +98,7 @@ public class QuantityFragment extends Fragment implements ImageClickInterface {
                 nextOne++;
                 binding.quantityBack.setVisibility(View.VISIBLE);
             } else {
+                Scores.updateScore(requireContext(), Scores.QUANTITY_SCORE);
                 nextOne = 1;
                 show(models.get(0));
                 binding.quantityBack.setVisibility(View.GONE);

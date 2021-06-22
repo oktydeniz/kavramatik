@@ -18,6 +18,7 @@ import com.kavramatik.kavramatik.model.NumberModel;
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.util.Scores;
 import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.NumberViewModel;
 
@@ -95,6 +96,7 @@ public class NumberFragment extends Fragment implements ImageClickInterface {
                 nextOne++;
                 binding.numberBack.setVisibility(View.VISIBLE);
             } else {
+                Scores.updateScore(requireContext(), Scores.NUMBER_SCORE);
                 show(numberModels.get(0));
                 nextOne = 1;
                 binding.numberBack.setVisibility(View.GONE);

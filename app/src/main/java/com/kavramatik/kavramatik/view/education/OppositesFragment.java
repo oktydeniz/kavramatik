@@ -19,6 +19,7 @@ import com.kavramatik.kavramatik.model.OppositesModel;
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
 import com.kavramatik.kavramatik.util.GoogleTTS;
 import com.kavramatik.kavramatik.util.ImageClickInterface;
+import com.kavramatik.kavramatik.util.Scores;
 import com.kavramatik.kavramatik.util.SharedPreferencesManager;
 import com.kavramatik.kavramatik.viewModel.OppositesViewModel;
 
@@ -96,6 +97,7 @@ public class OppositesFragment extends Fragment implements ImageClickInterface {
                 nextOne++;
                 binding.oppositesBack.setVisibility(View.VISIBLE);
             } else {
+                Scores.updateScore(requireContext(), Scores.OPPOSITE_SCORE);
                 show(oppositesModelList.get(0));
                 nextOne = 1;
                 binding.oppositesBack.setVisibility(View.GONE);
