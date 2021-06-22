@@ -35,8 +35,8 @@
             android:layout_marginTop="16dp"
             android:text="@{number.numberName}"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/numberImage"
+            app:layout_constraintStart_toStartOf="@+id/numberImage"
             app:layout_constraintTop_toBottomOf="@+id/numberImage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

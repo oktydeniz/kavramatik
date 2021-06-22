@@ -51,20 +51,22 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="184dp"
                 android:text="@{shape.shapeTwoText}"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/shapeCircleImageTwo"
+                app:layout_constraintStart_toStartOf="@+id/shapeCircleImageTwo"
                 app:layout_constraintTop_toBottomOf="@+id/shapeCircleImageTwo" />
 
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="172dp"
                 android:text="@{shape.shapeText}"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/shapeCircleImage"
+                app:layout_constraintStart_toStartOf="@+id/shapeCircleImage"
                 app:layout_constraintTop_toBottomOf="@+id/shapeCircleImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

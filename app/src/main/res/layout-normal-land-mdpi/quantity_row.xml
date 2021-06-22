@@ -49,20 +49,20 @@
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="172dp"
                 android:text="@{quantity.quantityOneText}"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/quantityImage"
+                app:layout_constraintStart_toStartOf="@+id/quantityImage"
                 app:layout_constraintTop_toBottomOf="@+id/quantityImage" />
 
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="164dp"
                 android:text="@{quantity.quantityTwoText}"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/quantityImageTwo"
+                app:layout_constraintStart_toStartOf="@+id/quantityImageTwo"
                 app:layout_constraintTop_toBottomOf="@+id/quantityImageTwo" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
