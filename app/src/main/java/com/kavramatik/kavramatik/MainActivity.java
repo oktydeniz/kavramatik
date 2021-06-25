@@ -7,8 +7,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.kavramatik.kavramatik.util.AppAlertDialogs;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
     @Override
     public void onClick(DialogInterface dialog, int which) {
         if (which == DialogInterface.BUTTON_POSITIVE) {
-            IntentsTTS.installTTS(getApplicationContext());
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.android.tts")));
         } else if (which == DialogInterface.BUTTON_NEGATIVE) {
             IntentsTTS.openTTSSettings(getApplicationContext());
         }

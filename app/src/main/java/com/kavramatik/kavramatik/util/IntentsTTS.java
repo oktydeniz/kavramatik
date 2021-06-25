@@ -22,11 +22,11 @@ public class IntentsTTS {
 
     public static void installTTS(Context context) {
         try {
-            context.startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=" + "com.google.android.tts")));
-        } catch (Exception e) {
-            e.printStackTrace();
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.android.tts")));
+        } catch (android.content.ActivityNotFoundException a) {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.tts")));
         }
+
     }
 
     public static void rateUS(Context context) {
