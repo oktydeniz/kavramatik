@@ -298,7 +298,7 @@
                     android:clickable="true"
                     android:contentDescription="@string/speech"
                     android:focusable="true"
-                    android:src="@drawable/speech" />
+                    android:src="@drawable/stt_card" />
 
                 <TextView
                     android:layout_width="match_parent"
